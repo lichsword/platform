@@ -13,7 +13,7 @@ public class Main {
 
     LinkedList<String> mMessageQueue = new LinkedList<String>();
 
-    final int MAX = 5;
+    static final int MAX = 5;
 
     public static void main(String[] args) {
         Main main = new Main();
