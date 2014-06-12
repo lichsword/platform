@@ -10,6 +10,8 @@ package com.jni;
  */
 public class TTY {
 
+    public native static void flash();
+
     public native static void echo();
 
     public native static void noecho();
@@ -24,13 +26,19 @@ public class TTY {
 
     public native static void clear();
 
+    public native static void clrtobot();
+
+    public native static void clrtoeol();
+
     public native static void erase();
 
     public native static void cls();
 
     public native static void addstr(String string);
 
+    public native static String getstr();
+
     public native static int getch();
 
-    public native static void move(int x, int y);
+    public native static void move(int line, int col);
 }
