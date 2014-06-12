@@ -1,4 +1,7 @@
-import java.io.Console;
+package com.lich.platform;
+
+import com.jni.TTY;
+
 import java.util.LinkedList;
 
 /**
@@ -11,6 +14,8 @@ import java.util.LinkedList;
  */
 public class Main {
 
+//    public native void hello();
+
     LinkedList<String> mMessageQueue = new LinkedList<String>();
 
     static final int MAX = 5;
@@ -21,12 +26,14 @@ public class Main {
     }
 
     public Main() {
-
+        try {
+            System.loadLibrary("tty");
+        } catch (Exception e) {
+        }
     }
 
     public void start() {
-        log("Main enter...");
-
+        TTY.initscr();
         BackWork backWork = new BackWork();
         backWork.start();
 
@@ -35,19 +42,15 @@ public class Main {
             synchronized (mMessageQueue) {
                 try {
                     if (mMessageQueue.size() == MAX) {
-                        log("mMessageQueue is full, wait...");
                         mMessageQueue.wait();
                     }
 
                     if (null != message) {
-                        System.out.print("Send msg:");
-
                         if (mMessageQueue.add(String.valueOf(message))) {
-                            log("Produce message into queue: " + message);
+                            message = null;// clear after send.
                             mMessageQueue.notify();
                         }// end if
 
-                        message = null;// clear after send.
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -55,11 +58,17 @@ public class Main {
 
             }// end sync.
 
-            // wait input.
-            Console console = System.console();
-            String input = console.readLine();
-            message = input;
+//            String input = console.readLine();
+//            message = input;
+            int ch = TTY.getch();
+            if (ch == 'q' || ch == 'Q') {
+                break;
+            } else {
+                message = String.valueOf((char) ch);
+            }
         }// end while
+
+        TTY.endwin();
     }
 
     class BackWork extends Thread {
@@ -68,19 +77,17 @@ public class Main {
         @Override
         public void run() {
             super.run();
-            log("BackWork...started");
 
             while (true) {
 
                 synchronized (mMessageQueue) {
                     try {
                         if (mMessageQueue.size() == 0) {
-                            log("Queue empty, please wait.");
                             mMessageQueue.wait();
                         }
 
                         String item = mMessageQueue.removeFirst();
-                        log("handle msg: " + item);
+                        render();
                         mMessageQueue.notify();
 
                     } catch (Exception e) {
@@ -89,16 +96,29 @@ public class Main {
                 }// end sync
 
                 try {
-                    Thread.sleep(1200);
+//                    Thread.sleep(1200);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
             }// end while
 
         }
     }
 
-    private static void log(String msg) {
-        System.out.println(msg);
+    /**
+     * 不要做全屏渲染（清屏操作等），只做上下文渲染。
+     */
+    private void render() {
+//        TTY.cls();
+        TTY.reset();
+        TTY.noecho();
+        TTY.clear();
+        TTY.move(0, 0);
+        TTY.addstr(String.format("SM: ?\n-----\nTASK:%d\n-----\nOUT:%s", mMessageQueue.size(), "invoke render()"));
+        TTY.refresh();
     }
+
+
 }
