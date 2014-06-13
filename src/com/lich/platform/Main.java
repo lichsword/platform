@@ -14,288 +14,186 @@ import java.util.LinkedList;
  */
 public class Main {
 
-    int state = ST_END;
-    static final int ST_END = -1;
-    static final int ST_IDLE = 0;
-    static final int ST_WORK = 1;
-    static final int ST_REFRESH = 2;
+    private final String LIB_NAME_TTY = "tty";
 
-    void changeState(int newState) {
-        this.state = newState;
+    public static void main(String[] args) {
+        Main main = new Main();
+        main.run();
     }
 
-    void onEvent() {
+    public Main() {
+        loadLibrary(LIB_NAME_TTY);
+    }
+
+    /**
+     * @param path
+     * @return
+     */
+    private boolean loadLibrary(String path) {
+        try {
+            System.out.println("Main.loadLibrary.Value = " + path);
+            System.loadLibrary(path);
+            System.out.println("Main.loadLibrary.Success");
+            return true;
+        } catch (Exception e) {
+            System.out.println("Main.loadLibrary.Exception, reason\n " + e.toString());
+            return false;
+        }
+    }
+
+    int state = Constants.STATE_ENDED;
+
+
+    /**
+     * 外部事件
+     *
+     * @param event
+     * @param extra
+     */
+    void onEvent(int event, Object extra) {
         switch (state) {
-            case ST_IDLE:
+            case Constants.STATE_START:
+                switch (event) {
+                    case Constants.EVENT_EXIT:
+                        changeState(Constants.STATE_ENDED);
+                        break;
+                    case Constants.EVENT_INPUT:
+                        mMessageQueue.addLast((String) extra);
+                        changeState(Constants.STATE_IDLE);
+                        break;
+                    default:
+                        break;
+                }
                 break;
-            case ST_WORK:
+            case Constants.STATE_IDLE:
+                switch (event) {
+                    case Constants.EVENT_EXIT:
+                        changeState(Constants.STATE_ENDED);
+                        break;
+                    case Constants.EVENT_INPUT:
+                        mMessageQueue.addLast((String) extra);
+                        changeState(Constants.STATE_WORK);
+                        break;
+                    default:
+                        break;
+                }
                 break;
-            case ST_REFRESH:
+            case Constants.STATE_WORK:
+                switch (event) {
+                    case Constants.EVENT_EXIT:
+                        changeState(Constants.STATE_ENDED);
+                        break;
+                    case Constants.EVENT_INPUT:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case Constants.STATE_REFRESH:
+                switch (event) {
+                    case Constants.EVENT_EXIT:
+                        changeState(Constants.STATE_ENDED);
+                        break;
+                    case Constants.EVENT_INPUT:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case Constants.STATE_ENDED:
+                // do nothing.
                 break;
             default:
                 break;
         }
     }
 
+    /**
+     * 执行状态转换
+     *
+     * @param newState
+     */
+    void changeState(int newState) {
+        this.state = newState;
+        onStateChanged();
+    }
+
+    /**
+     * 状态转换的回调
+     */
+    void onStateChanged() {
+        switch (state) {
+            case Constants.STATE_START:
+                TTY.initscr();
+                changeState(Constants.STATE_REFRESH);// 初始化界面
+                break;
+            case Constants.STATE_IDLE:
+                if (mMessageQueue.size() != 0) {
+                    changeState(Constants.STATE_WORK);
+                } else {
+//                    changeState(Constants.STATE_ENDED);
+                    // do nothing
+                }
+                break;
+            case Constants.STATE_WORK:
+                if (mMessageQueue.size() == 0) {
+                    // no work
+                } else {
+                    String msg = mMessageQueue.removeLast();
+                    // do work
+                    // finish work
+                }
+                changeState(Constants.STATE_REFRESH);
+                break;
+            case Constants.STATE_REFRESH:
+                draw();
+                changeState(Constants.STATE_IDLE);
+                break;
+            case Constants.STATE_ENDED:
+                TTY.endwin();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 绘图
+     */
+    private void draw() {
+        TTY.clear();
+        TTY.move(Constants.STATUS_BAR_LINE_BEGIN, 0);
+        TTY.addstr(String.format(Constants.FORMAT_STATUS_BAR, "State_Refresh", "2014-06-13"));
+        TTY.move(Constants.TASK_BAR_LINE_BEGIN, 0);
+        TTY.addstr(String.format(Constants.FORMAT_TASK_BAR, "(1/3)"));
+        TTY.move(Constants.OUTPUT_AREA_LINE_BEGIN, 0);
+        TTY.addstr(String.format(Constants.FORMAT_OUTPUT_AREA, "Handled work"));
+        TTY.move(Constants.OUTPUT_AREA_LINE_END, 0);
+        TTY.addstr("--------------------------------------------------");
+        TTY.move(Constants.INPUT_AREA_LINE_BEGIN, 0);
+        TTY.addstr(String.format(Constants.FORMAT_INPUT_AREA));
+        TTY.refresh();
+    }
+
     LinkedList<String> mMessageQueue = new LinkedList<String>();
 
     static final int MAX = 5;
 
-    public static void main(String[] args) {
-        Main main = new Main();
-        main.start();
-    }
-
-    public Main() {
-        try {
-            System.loadLibrary("tty");
-        } catch (Exception e) {
-        }
-    }
-
-    /**
-     * system("reset")清屏
-     * <p/>
-     * OK
-     */
-    private void testReset() {
-        TTY.reset();
-    }
-
-    /**
-     * clear()清屏
-     * <p/>
-     * OK
-     */
-    private void testClear() {
-        TTY.initscr();
-        TTY.clear();
-        TTY.refresh();
-        TTY.getch();
-        TTY.endwin();
-    }
-
-    /**
-     * erase()清屏
-     * <p/>
-     * OK
-     */
-    private void testErase() {
-        TTY.initscr();
-        TTY.erase();
-        TTY.refresh();
-        TTY.getch();
-        TTY.endwin();
-    }
-
-    /**
-     * move()移动光标
-     * <p/>
-     * OK
-     */
-    private void testMove() {
-        TTY.initscr();
-        TTY.move(0, 3);
-        TTY.addstr("AAA");
-        TTY.refresh();
-        TTY.getch();
-        TTY.endwin();
-    }
-
-    /**
-     * 写字符串
-     * <p/>
-     * OK
-     */
-    private void testAddstr(int line, int col, String string) {
-        TTY.initscr();
-        TTY.move(line, col);
-        TTY.addstr(string);
-        TTY.refresh();
-        TTY.getch();
-        TTY.endwin();
-    }
-
-    /**
-     * 清除至行尾
-     *
-     * @param line OK
-     */
-    private void testClearToEndOfLine(int line, int col) {
-        TTY.initscr();
-        TTY.move(line, col);
-        TTY.clrtoeol();
-        TTY.refresh();
-        TTY.getch();
-        TTY.endwin();
-    }
-
-    /**
-     * 清除至屏幕底
-     *
-     * @param line OK
-     */
-    private void testClearToEndOfScreen(int line, int col) {
-        TTY.initscr();
-        TTY.move(line, col);
-        TTY.clrtobot();
-        TTY.refresh();
-        TTY.getch();
-        TTY.endwin();
-    }
-
-    /**
-     * 闪屏
-     * <p/>
-     * OK
-     */
-    private void testFlash() {
-        TTY.initscr();
-        TTY.flash();
-        TTY.endwin();
-    }
-
-    /**
-     * 读取1个字符
-     * <p/>
-     * OK
-     *
-     * @return
-     */
-    private int testGetChar() {
-        return TTY.getch();
-    }
-
-    /**
-     * 读取字符串（回车确认）
-     * <p/>
-     * OK
-     *
-     * @return
-     */
-    private String testGetString() {
-        return TTY.getstr();
-    }
-
-    public void start() {
-
-        if (true) {
-//            testReset();
-//            testClear();
-//            testErase();
-//            testMove();
-//            testFlash();
-//            testAddstr(1, 5, "[______]");
-//            testAddstr(0, 0, "show me the money");
-//            testAddstr(1, 0, "black sheep wall\n");
-//            testClearToEndOfLine(1, 5);
-//            testClearToEndOfScreen(0, 5);
-            TTY.initscr();
-            String str = testGetString();
-            TTY.endwin();
-            testAddstr(5, 5, str);
-            return;
-        }// end if
-
-        changeState(ST_IDLE);
-
-        TTY.initscr();
-        BackWork backWork = new BackWork();
-        backWork.start();
-
-        String message = null;
+    public void run() {
+        changeState(Constants.STATE_START);
         while (true) {
-            synchronized (mMessageQueue) {
-                try {
-                    if (mMessageQueue.size() == MAX) {
-                        mMessageQueue.wait();
-                    }
-
-                    if (null != message) {
-                        if (mMessageQueue.add(String.valueOf(message))) {
-                            message = null;// clear after send.
-                            mMessageQueue.notify();
-                        }// end if
-
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }// end sync.
-
-//            String input = console.readLine();
-//            message = input;
-//            int ch = TTY.getch();
-            String string = TTY.getstr();
-//            if (ch == 'q' || ch == 'Q') {
-            if (string.charAt(0) == 'q' || string.charAt(0) == 'Q') {
-                TTY.reset();
-                changeState(ST_END);
+            String input = TTY.getstr();
+            if (wannaExit(input)) {
+                onEvent(Constants.EVENT_EXIT, null);
                 break;
             } else {
-//                message = String.valueOf((char) ch);
-                message = string;
+                onEvent(Constants.EVENT_INPUT, input);
             }
-        }// end while
-
-        TTY.addstr("Main...end\n");
-        TTY.endwin();
-    }
-
-    class BackWork extends Thread {
-
-
-        @Override
-        public void run() {
-            super.run();
-
-            while (true) {
-
-                synchronized (mMessageQueue) {
-                    try {
-                        if (mMessageQueue.size() == 0) {
-                            mMessageQueue.wait();
-                        }
-
-                        String item = mMessageQueue.removeFirst();
-                        render(item);
-
-                        if (state == ST_END) {
-                            break;
-                        }// end if
-
-                        mMessageQueue.notify();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }// end sync
-
-                try {
-//                    Thread.sleep(1200);
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }// end while
-
         }
     }
 
-    /**
-     * 不要做全屏渲染（清屏操作等），只做上下文渲染。
-     */
-    private void render(String workstring) {
-//        TTY.cls();
-        TTY.reset();
-        TTY.noecho();
-        TTY.clear();
-        //TTY.move(0, 0);
-        TTY.addstr(String.format("SM: ?\n-----\nTASK:%d\n-----\nOUT:%s\n", mMessageQueue.size(), "invoke render()" + workstring));
-        TTY.refresh();
+    private boolean wannaExit(String input) {
+        return input.equalsIgnoreCase("exit");
     }
-
 
 }
