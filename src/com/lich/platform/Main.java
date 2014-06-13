@@ -125,6 +125,16 @@ public class Main {
         switch (state) {
             case Constants.STATE_START:
                 TTY.initscr();
+                if (TTY.hasColors()) {
+                    TTY.getch();
+                    TTY.startColor();
+//                    TTY.initPair(1, TTY.COLOR_WHITE, TTY.COLOR_BLACK);
+//                    TTY.attrset(TTY.getColorPair(1) | TTY.attrUnderline());
+                    TTY.attrset(TTY.attrUnderline());
+//                    TTY.attrset(TTY.getColorPair(1));
+//                } else {
+//
+                }
                 changeState(Constants.STATE_REFRESH);// 初始化界面
                 break;
             case Constants.STATE_IDLE:
