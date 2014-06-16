@@ -1,7 +1,11 @@
 package com.lich.platform;
 
 import com.jni.TTY;
+import com.lich.platform.service.SystemService;
+import com.lich.platform.service.TimeService;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -126,14 +130,18 @@ public class Main {
             case Constants.STATE_START:
                 TTY.initscr();
                 if (TTY.hasColors()) {
-                    TTY.getch();
+//                    TTY.getch();
                     TTY.startColor();
-//                    TTY.initPair(1, TTY.COLOR_WHITE, TTY.COLOR_BLACK);
-//                    TTY.attrset(TTY.getColorPair(1) | TTY.attrUnderline());
-                    TTY.attrset(TTY.attrUnderline());
+//                    TTY.initPair(0, TTY.COLOR_WHITE, TTY.COLOR_GREEN);
+                    TTY.initPair(1, TTY.COLOR_WHITE, TTY.COLOR_BLUE);
+                    TTY.initPair(2, TTY.COLOR_WHITE, TTY.COLOR_RED);
+                    TTY.initPair(3, TTY.COLOR_WHITE, TTY.COLOR_GREEN);
+                    TTY.initPair(4, TTY.COLOR_WHITE, TTY.COLOR_YELLOW);
+                    TTY.initPair(5, TTY.COLOR_WHITE, TTY.COLOR_CYAN);
+                    TTY.initPair(6, TTY.COLOR_WHITE, TTY.COLOR_MAGENTA);
+
+//                    TTY.attrset(TTY.attrUnderline());
 //                    TTY.attrset(TTY.getColorPair(1));
-//                } else {
-//
                 }
                 changeState(Constants.STATE_REFRESH);// 初始化界面
                 break;
@@ -150,7 +158,8 @@ public class Main {
                     // no work
                 } else {
                     String msg = mMessageQueue.removeLast();
-                    // do work
+                    // do work TODO
+                    handleMsg(msg);
                     // finish work
                 }
                 changeState(Constants.STATE_REFRESH);
@@ -167,22 +176,59 @@ public class Main {
         }
     }
 
+    private void handleMsg(String msg) {
+        // TODO
+        if (msg.equals("time")) {
+            TimeService timeService = (TimeService) SystemService.getInstance().getService(SystemService.LABEL_TIME);
+            output = timeService.getTime();
+        }
+    }
+
     /**
      * 绘图
      */
     private void draw() {
         TTY.clear();
+        drawStatebar();
+        drawTaskbar();
+        drawOutputbar();
+        drawInputbar();
+        TTY.attroff(1 | TTY.MASK_A_UNDERLINE | TTY.MASK_A_BOLD);
+        TTY.refresh();
+    }
+
+    private void drawStatebar() {
+        TTY.attrset(1 | TTY.MASK_A_BOLD);
         TTY.move(Constants.STATUS_BAR_LINE_BEGIN, 0);
-        TTY.addstr(String.format(Constants.FORMAT_STATUS_BAR, "State_Refresh", "2014-06-13"));
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd 晚HH:mm:ss");
+        Date d = new Date();
+        String dd = format.format(d);
+        date = dd;
+
+        TTY.addstr(String.format(Constants.FORMAT_STATUS_BAR, "State_Refresh", date));
+    }
+
+    private void drawTaskbar() {
+        TTY.attrset(2 | TTY.MASK_A_PROTECT);
         TTY.move(Constants.TASK_BAR_LINE_BEGIN, 0);
         TTY.addstr(String.format(Constants.FORMAT_TASK_BAR, "(1/3)"));
+    }
+
+    private void drawOutputbar() {
+        TTY.attrset(3);
         TTY.move(Constants.OUTPUT_AREA_LINE_BEGIN, 0);
-        TTY.addstr(String.format(Constants.FORMAT_OUTPUT_AREA, "Handled work"));
+//        TTY.attroff(TTY.attrBold());
+        TTY.addstr(String.format(Constants.FORMAT_OUTPUT_AREA, output));
+    }
+
+    private void drawInputbar() {
+        TTY.attrset(3 | TTY.MASK_A_UNDERLINE);
         TTY.move(Constants.OUTPUT_AREA_LINE_END, 0);
         TTY.addstr("--------------------------------------------------");
         TTY.move(Constants.INPUT_AREA_LINE_BEGIN, 0);
+        TTY.attrset(4);
         TTY.addstr(String.format(Constants.FORMAT_INPUT_AREA));
-        TTY.refresh();
     }
 
     LinkedList<String> mMessageQueue = new LinkedList<String>();
@@ -205,5 +251,9 @@ public class Main {
     private boolean wannaExit(String input) {
         return input.equalsIgnoreCase("exit");
     }
+
+    private String date;// 日期
+
+    private String output;// 输出信息
 
 }
