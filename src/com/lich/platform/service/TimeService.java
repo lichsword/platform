@@ -11,14 +11,15 @@ import java.util.Date;
  * <p/>
  * TODO
  */
-public class TimeService extends BaseService {
+public class TimeService implements ITime {
 
     public TimeService() {
 
     }
 
+    @Override
     public String getTime() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd 晚HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date d = new Date();
         String dd = format.format(d);
         return dd;

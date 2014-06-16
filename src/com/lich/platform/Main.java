@@ -1,8 +1,11 @@
 package com.lich.platform;
 
+import com.jni.GIT;
 import com.jni.TTY;
+import com.lich.platform.service.IDatabase;
+import com.lich.platform.service.ITime;
+import com.lich.platform.service.NBService;
 import com.lich.platform.service.SystemService;
-import com.lich.platform.service.TimeService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +22,7 @@ import java.util.LinkedList;
 public class Main {
 
     private final String LIB_NAME_TTY = "tty";
+    private final String LIB_NAME_GIT = "git";
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -27,12 +31,26 @@ public class Main {
 
     public Main() {
         loadLibrary(LIB_NAME_TTY);
+        loadLibrary(LIB_NAME_GIT);
+        init();
+    }
+
+    private void init() {
+        mColumns = TTY.getTTYColumns();
+        mLines = TTY.getTTYLines();
+        // TODO
+//        GIT.test();
+        String path = "/Users/lichsword/Documents/workspace_company/taoappcenter_android";
+        String author = "wangyue";
+        String since = "1.days";
+        GIT.log(path, author, since);
     }
 
     /**
      * @param path
      * @return
      */
+
     private boolean loadLibrary(String path) {
         try {
             System.out.println("Main.loadLibrary.Value = " + path);
@@ -177,12 +195,20 @@ public class Main {
     }
 
     private void handleMsg(String msg) {
-        // TODO
         if (msg.equals("time")) {
-            TimeService timeService = (TimeService) SystemService.getInstance().getService(SystemService.LABEL_TIME);
-            output = timeService.getTime();
+            ITime iTime = (ITime) SystemService.getInstance().getService(SystemService.LABEL_TIME);
+            output = iTime.getTime();
+        } else if (msg.equals("sqlite")) {
+            IDatabase iDatabase = (IDatabase) SystemService.getInstance().getService(SystemService.LABEL_DATABASE);
+            inputTip = "Select database by number.";
+            output = iDatabase.handleMsg(msg);
+        } else if (msg.equals("nb")) {
+            NBService nbService = (NBService) SystemService.getInstance().getService(SystemService.LABEL_NEXTBRAIN);
+//            nbService. TODO
         }
+        // TODO
     }
+
 
     /**
      * 绘图
@@ -201,11 +227,13 @@ public class Main {
         TTY.attrset(1 | TTY.MASK_A_BOLD);
         TTY.move(Constants.STATUS_BAR_LINE_BEGIN, 0);
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd 晚HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date d = new Date();
         String dd = format.format(d);
         date = dd;
 
+        drawLineBg();
+        TTY.move(Constants.STATUS_BAR_LINE_BEGIN, 0);
         TTY.addstr(String.format(Constants.FORMAT_STATUS_BAR, "State_Refresh", date));
     }
 
@@ -216,24 +244,37 @@ public class Main {
     }
 
     private void drawOutputbar() {
-        TTY.attrset(3);
         TTY.move(Constants.OUTPUT_AREA_LINE_BEGIN, 0);
-//        TTY.attroff(TTY.attrBold());
-        TTY.addstr(String.format(Constants.FORMAT_OUTPUT_AREA, output));
+        TTY.attrset(3);
+        drawLineBg();
+        TTY.move(Constants.OUTPUT_AREA_LINE_BEGIN, 0);
+        TTY.addstr(Constants.STR_OUTPUT);
+        TTY.attroff(3);
+        TTY.move(Constants.OUTPUT_AREA_LINE_BEGIN + 1, 0);
+        TTY.addstr(output);
     }
 
     private void drawInputbar() {
         TTY.attrset(3 | TTY.MASK_A_UNDERLINE);
         TTY.move(Constants.OUTPUT_AREA_LINE_END, 0);
-        TTY.addstr("--------------------------------------------------");
+        drawLineBg('-');
         TTY.move(Constants.INPUT_AREA_LINE_BEGIN, 0);
-        TTY.attrset(4);
-        TTY.addstr(String.format(Constants.FORMAT_INPUT_AREA));
+        TTY.attroff(3);
+
+        // draw tips
+        if (inputTip.equals("")) {
+            TTY.addstr(Constants.STR_INPUT);
+        } else {
+            TTY.addstr(String.format(Constants.FORMAT_INPUT_AREA, inputTip));
+        }
+
+        // move next line
+        TTY.move(Constants.INPUT_AREA_LINE_BEGIN + 1, 0);
     }
 
     LinkedList<String> mMessageQueue = new LinkedList<String>();
 
-    static final int MAX = 5;
+//    static final int MAX = 5;
 
     public void run() {
         changeState(Constants.STATE_START);
@@ -252,8 +293,50 @@ public class Main {
         return input.equalsIgnoreCase("exit");
     }
 
+    // 环境参数
     private String date;// 日期
 
-    private String output;// 输出信息
+    private String inputTip = "";// 输入引导提示
+    private String output = "";// 输出信息
+
+    private int mColumns;// tty的列数
+    private int mLines;// tty的行数
+
+
+    public void setHandleResult(String output, String inputTip) {
+        this.output = output;
+        this.inputTip = inputTip;
+    }
+
+    /**
+     * 以空字符串绘满一行的背景
+     */
+    private static void drawLineBg(char fill) {
+        TTY.addstr(buildSpaceString(fill));
+    }
+
+    /**
+     * 以空字符串绘满一行的背景
+     */
+    private static void drawLineBg() {
+        TTY.addstr(buildSpaceString());
+    }
+
+    /**
+     * 初始化长度为tty的列数的空字符串
+     *
+     * @return
+     */
+    private static String buildSpaceString(char fill) {
+        char[] chars = new char[TTY.getTTYColumns()];
+        for (int i = 0; i < chars.length; i++) {
+            chars[i] = fill;
+        }
+        return String.valueOf(chars);
+    }
+
+    private static String buildSpaceString() {
+        return buildSpaceString(' ');
+    }
 
 }

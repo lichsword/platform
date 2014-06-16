@@ -37,9 +37,12 @@ public class Constants {
     static final int INPUT_AREA_LINE_BEGIN = OUTPUT_AREA_LINE_END + DIVIDER_HEIGHT;
     static final int INPUT_AREA_LINE_END = Undefined;
 
-    // format
+    // 常量字符串
+    static final String STR_INPUT = "Input";
+    static final String STR_OUTPUT = "Output";
+
+    // 常量格式化串
     static final String FORMAT_STATUS_BAR = "STATE:%s\tDATE:%s";
     static final String FORMAT_TASK_BAR = "TASK:%s";
-    static final String FORMAT_OUTPUT_AREA = "Output:\n%s";
-    static final String FORMAT_INPUT_AREA = "Input:\n";
+    static final String FORMAT_INPUT_AREA = "Input: (Tips: %s)";
 }

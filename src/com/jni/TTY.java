@@ -10,6 +10,18 @@ package com.jni;
  */
 public class TTY {
 
+    public static int MASK_A_NORMAL = 0x010;// Normal display (no highlight)
+    public static int MASK_A_STANDOUT = 0x020;// Best highlighting mode of the terminal.
+    public static int MASK_A_UNDERLINE = 0x040;// Underlining
+    public static int MASK_A_REVERSE = 0x080;// Reverse video
+    public static int MASK_A_BLINK = 0x100;// Blinking
+    public static int MASK_A_DIM = 0x200;// Half bright
+    public static int MASK_A_BOLD = 0x400;// Extra bright or bold
+    public static int MASK_A_PROTECT = 0x800;// Protected mode
+    public static int MASK_A_INVIS = 0x1000;// Invisible or blank mode
+    public static int MASK_A_ALTCHARSET = 0x2000;// Alternate character set
+    public static int MASK_A_CHARTEXT = 0x4000;// Bit-mask to extract a character
+
     public native static void flash();
 
     public native static void echo();
@@ -89,15 +101,7 @@ public class TTY {
 
     public static native byte attrChartext();
 
-    public static int MASK_A_NORMAL = 0x010;// Normal display (no highlight)
-    public static int MASK_A_STANDOUT = 0x020;// Best highlighting mode of the terminal.
-    public static int MASK_A_UNDERLINE = 0x040;// Underlining
-    public static int MASK_A_REVERSE = 0x080;// Reverse video
-    public static int MASK_A_BLINK = 0x100;// Blinking
-    public static int MASK_A_DIM = 0x200;// Half bright
-    public static int MASK_A_BOLD = 0x400;// Extra bright or bold
-    public static int MASK_A_PROTECT = 0x800;// Protected mode
-    public static int MASK_A_INVIS = 0x1000;// Invisible or blank mode
-    public static int MASK_A_ALTCHARSET = 0x2000;// Alternate character set
-    public static int MASK_A_CHARTEXT = 0x4000;// Bit-mask to extract a character
+    public static native int getTTYLines();
+
+    public static native int getTTYColumns();
 }

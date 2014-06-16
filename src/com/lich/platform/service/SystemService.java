@@ -12,11 +12,13 @@ import java.util.HashMap;
  */
 public class SystemService {
 
+    public static final String LABEL_NEXTBRAIN = "com.service.nextbrain";
+    public static final String LABEL_DATABASE = "com.service.database";
     public static final String LABEL_TIME = "com.service.time";
     public static final String LABEL_WEATHER = "com.service.weather";
     public static final String LABEL_WORK_REPORT = "com.service.work_report";
 
-    private HashMap<String, BaseService> serviceHashMap = new HashMap<String, BaseService>();
+    private HashMap<String, Object> serviceHashMap = new HashMap<String, Object>();
     private HashMap<String, String> serviceNameHashMap = new HashMap<String, String>();
 
     private static SystemService sInstance;
@@ -36,10 +38,12 @@ public class SystemService {
         serviceNameHashMap.put(LABEL_WORK_REPORT, WorkReportService.class.getName());
         serviceNameHashMap.put(LABEL_WEATHER, WeatherService.class.getName());
         serviceNameHashMap.put(LABEL_TIME, TimeService.class.getName());
+        serviceNameHashMap.put(LABEL_NEXTBRAIN, NBService.class.getName());
+        serviceNameHashMap.put(LABEL_DATABASE, DBService.class.getName());
     }
 
-    public BaseService getService(String label) {
-        BaseService service;
+    public Object getService(String label) {
+        Object service;
 
         if (serviceHashMap.containsKey(label)) {
             service = serviceHashMap.get(label);
@@ -50,15 +54,12 @@ public class SystemService {
         return service;
     }
 
-    private BaseService registerService(String label) {
-        BaseService service = null;
+    private Object registerService(String label) {
+        Object service = null;
         String className = serviceNameHashMap.get(label);
         try {
             Class cls = Class.forName(className);
-            Object xyz = cls.newInstance();
-            if (xyz instanceof BaseService) {
-                service = (BaseService) xyz;
-            }
+            service = cls.newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -66,8 +67,9 @@ public class SystemService {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-        serviceHashMap.put(label, service);
+        if (null != service) {
+            serviceHashMap.put(label, service);
+        }// end if
         return service;
     }
 }
