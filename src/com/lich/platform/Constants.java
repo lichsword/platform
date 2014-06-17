@@ -30,7 +30,7 @@ public class Constants {
     static final int TASK_BAR_LINE_END = TASK_BAR_LINE_BEGIN + TASK_BAR_HEIGHT;
 
     static final int OUTPUT_AREA_LINE_BEGIN = TASK_BAR_LINE_END;
-    static final int OUTPUT_AREA_HEIGHT = 8;
+    static final int OUTPUT_AREA_HEIGHT = 10;
     static final int OUTPUT_AREA_LINE_END = OUTPUT_AREA_LINE_BEGIN + OUTPUT_AREA_HEIGHT;
 
     static final int DIVIDER_HEIGHT = 1;

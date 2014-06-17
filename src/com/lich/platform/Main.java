@@ -2,6 +2,7 @@ package com.lich.platform;
 
 import com.jni.TTY;
 import com.lich.platform.service.*;
+import com.util.TextUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -200,6 +201,7 @@ public class Main {
             String since = "1.weeks";
             IGit iGit = (IGit) SystemService.getInstance().getService(SystemService.LABEL_GIT);
             output = iGit.log(path, author, since);
+            output = TextUtils.ellipsizingText(output, Constants.OUTPUT_AREA_HEIGHT - 1, "(%d more...)");
         }
         // TODO
     }

@@ -23,9 +23,8 @@ public class TextUtils {
 
     /**
      * Returns true if the string is null or 0-length.
-     * 
-     * @param str
-     *            the string to be examined
+     *
+     * @param str the string to be examined
      * @return true if str is null or zero length
      */
     public static boolean isEmpty(CharSequence str) {
@@ -34,4 +33,56 @@ public class TextUtils {
         else
             return false;
     }
+
+    /**
+     * @param fullText    原始文本
+     * @param maxLine     最大显示行
+     * @param ellipsisTip 提示语
+     * @return
+     */
+    public static String ellipsizingText(String fullText, int maxLine, String ellipsisTip) {
+        String ellipsizedText = "";
+        int lineNumber = 1;
+
+        if (maxLine > 0) {
+            boolean overMaxLine = false;
+            int i;
+            if (maxLine == 1) {
+                overMaxLine = false;
+                int location = fullText.indexOf('\n');
+                ellipsizedText = (location != -1) ? fullText.substring(0, location) : fullText;
+            } else {
+                for (i = 0; i < fullText.length(); i++) {
+                    if (fullText.charAt(i) == '\n') {
+                        lineNumber++;
+                        if (!overMaxLine) {
+                            if (lineNumber == maxLine) {
+                                overMaxLine = true;
+                                ellipsizedText = fullText.substring(0, i);
+                            }
+                        }
+                    }
+                }
+
+                if (!overMaxLine) {
+                    ellipsizedText = fullText;
+                }
+            }
+            StringBuilder sb = new StringBuilder();
+            sb.append(ellipsizedText);
+            if (overMaxLine) {
+                sb.append('\n');
+                if (ellipsisTip.contains("%d")) {
+                    sb.append(String.format(ellipsisTip, lineNumber - maxLine));
+                } else {
+                    sb.append(ellipsisTip);
+                }
+            }
+            return sb.toString();
+        }
+        return "";
+
+
+    }
+
 }
