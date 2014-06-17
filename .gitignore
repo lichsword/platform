@@ -13,3 +13,6 @@ hs_err_pid*
 
 # out dir is template output file.
 out/
+
+# my custom
+*.log
