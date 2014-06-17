@@ -1,11 +1,7 @@
 package com.lich.platform;
 
-import com.jni.GIT;
 import com.jni.TTY;
-import com.lich.platform.service.IDatabase;
-import com.lich.platform.service.ITime;
-import com.lich.platform.service.NBService;
-import com.lich.platform.service.SystemService;
+import com.lich.platform.service.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,19 +34,12 @@ public class Main {
     private void init() {
         mColumns = TTY.getTTYColumns();
         mLines = TTY.getTTYLines();
-        // TODO
-//        GIT.test();
-        String path = "/Users/lichsword/Documents/workspace_company/taoappcenter_android";
-        String author = "wangyue";
-        String since = "1.weeks";
-        GIT.log(path, author, since);
     }
 
     /**
      * @param path
      * @return
      */
-
     private boolean loadLibrary(String path) {
         try {
             System.out.println("Main.loadLibrary.Value = " + path);
@@ -205,6 +194,12 @@ public class Main {
         } else if (msg.equals("nb")) {
             NBService nbService = (NBService) SystemService.getInstance().getService(SystemService.LABEL_NEXTBRAIN);
 //            nbService. TODO
+        } else if (msg.equals("log")) {
+            String path = "/Users/lichsword/Documents/workspace_company/taoappcenter_android";
+            String author = "wangyue";
+            String since = "1.weeks";
+            IGit iGit = (IGit) SystemService.getInstance().getService(SystemService.LABEL_GIT);
+            output = iGit.log(path, author, since);
         }
         // TODO
     }

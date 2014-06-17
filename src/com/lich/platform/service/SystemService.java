@@ -17,6 +17,7 @@ public class SystemService {
     public static final String LABEL_TIME = "com.service.time";
     public static final String LABEL_WEATHER = "com.service.weather";
     public static final String LABEL_WORK_REPORT = "com.service.work_report";
+    public static final String LABEL_GIT = "com.service.git";
 
     private HashMap<String, Object> serviceHashMap = new HashMap<String, Object>();
     private HashMap<String, String> serviceNameHashMap = new HashMap<String, String>();
@@ -40,6 +41,7 @@ public class SystemService {
         serviceNameHashMap.put(LABEL_TIME, TimeService.class.getName());
         serviceNameHashMap.put(LABEL_NEXTBRAIN, NBService.class.getName());
         serviceNameHashMap.put(LABEL_DATABASE, DBService.class.getName());
+        serviceNameHashMap.put(LABEL_GIT, GitService.class.getName());
     }
 
     public Object getService(String label) {
