@@ -42,7 +42,7 @@ public class Main {
 //        GIT.test();
         String path = "/Users/lichsword/Documents/workspace_company/taoappcenter_android";
         String author = "wangyue";
-        String since = "1.days";
+        String since = "1.weeks";
         GIT.log(path, author, since);
     }
 
