@@ -1,7 +1,7 @@
 package com.lich.platform.service;
 
 import com.jni.GIT;
-import com.util.FileUtil;
+import com.util.FileUtils;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,6 +15,6 @@ public class GitService implements IGit {
     @Override
     public String log(String path, String author, String since) {
         GIT.log(path, author, since);
-        return FileUtil.readFile("git.log");
+        return FileUtils.readFile("git.log");
     }
 }

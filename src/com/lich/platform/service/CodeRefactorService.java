@@ -1,13 +1,12 @@
 package com.lich.platform.service;
 
 import com.jni.UNIX;
-import com.util.FileUtil;
+import com.lich.platform.Constants;
+import com.log.TimeInfo;
+import com.util.FileUtils;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -48,18 +47,38 @@ public class CodeRefactorService implements ICodeRefactor {
 
     @Override
     public String getReport() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(parsePathReport);
+        sb.append(" in ");
+        sb.append(parsePathTimeInfo.getReport());
+        sb.append("(parse)");
+        sb.append(" & ");
+        sb.append(sortedByLineTimeInfo.getReport());
+        sb.append("(sort)");
+        sb.append("\n");
+        sb.append(sortedByLineReport);
+        result = sb.toString();
         return result;
     }
+
+    private String sortedByLineReport = "";
+    private TimeInfo sortedByLineTimeInfo = null;
+
+    private String parsePathReport = "";
+    private TimeInfo parsePathTimeInfo = null;
 
     private String result = "";
 
     @Override
     public void sortByLines(int flag) {
+        long start = System.currentTimeMillis();
+
         List<CodeRefactorResult> list = new ArrayList<CodeRefactorResult>();
         list.addAll(cache.values());
         Collections.sort(list, new CodeRefactorComparator(flag));
 
         StringBuilder sb = new StringBuilder();
+
         for (CodeRefactorResult result : list) {
             switch (result.getFileType()) {
                 case CodeRefactorResult.FILE_TYPE_DIR:
@@ -80,10 +99,14 @@ public class CodeRefactorService implements ICodeRefactor {
                     break;
             }
         }
-        result = sb.toString();
+
+        long end = System.currentTimeMillis();
+        sortedByLineTimeInfo = new TimeInfo(start, end);
+        sortedByLineReport = sb.toString();
     }
 
     public void parsePath(String path) {
+        long start = System.currentTimeMillis();
         if (!cache.containsKey(path)) {
             File file = new File(path);
             if (file.isDirectory()) {
@@ -92,6 +115,16 @@ public class CodeRefactorService implements ICodeRefactor {
                 parseFile(file, cache);
             }
         }// end if
+
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // TODO
+        }
+        long end = System.currentTimeMillis();
+        parsePathTimeInfo = new TimeInfo(start, end);
+        Collection<CodeRefactorResult> values = cache.values();
+        parsePathReport = String.format(Constants.FORMAT_HANDLE_FILES, values.size());
     }
 
     /**
@@ -146,7 +179,7 @@ public class CodeRefactorService implements ICodeRefactor {
         result.setChildFileCount(1);
         // 读取行数
         UNIX.wc("-l", javaFilePath);
-        String content = FileUtil.readFile("wc.log").trim();
+        String content = FileUtils.readFile("wc.log").trim();
         String[] parts = content.split(" ");
         // 填写参数
         result.setFileType(CodeRefactorResult.FILE_TYPE_FILE_JAVA);

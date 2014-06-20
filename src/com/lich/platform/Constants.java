@@ -46,10 +46,10 @@ public class Constants {
     public static final String FORMAT_TASK_BAR = "TASK:%s";
     public static final String FORMAT_INPUT_AREA = "Input: (Tips: %s)";
     public static final String FORMAT_ELLIPIZED = "(%d more...)";
+    public static final String FORMAT_HANDLE_FILES = "do %d files";
 
     // 常量标志位
     public static final int fInc = 0;
     public static final int fDesc = 1;
-
 
 }

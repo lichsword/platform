@@ -6,11 +6,11 @@ import java.util.ArrayList;
 /**
  * @author yuewang
  */
-public class FileUtil {
+public class FileUtils {
 
     private static final int DEFAULT_BUFFER_SIZE = 8192;
 
-    private FileUtil() {
+    private FileUtils() {
     }
 
     /**
