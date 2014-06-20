@@ -204,7 +204,7 @@ public class Main {
             inputTip = "Select database by number.";
             output = iDatabase.handleMsg(msg);
         } else if (msg.equals("nb")) {
-            NBService nbService = (NBService) SystemService.getInstance().getService(SystemService.LABEL_NEXT_BRAIN);
+            INextBrain iNextBrain = (INextBrain) SystemService.getInstance().getService(SystemService.LABEL_NEXT_BRAIN);
 //            nbService. TODO
         } else if (msg.equals("log")) {
             String path = "/Users/lichsword/Documents/workspace_company/taoappcenter_android";
@@ -212,7 +212,7 @@ public class Main {
             String since = "1.weeks";
             IGit iGit = (IGit) SystemService.getInstance().getService(SystemService.LABEL_GIT);
             output = iGit.log(path, author, since);
-            output = TextUtils.ellipsizingText(output, Constants.OUTPUT_AREA_HEIGHT - 1, "(%d more...)");
+            output = TextUtils.ellipsizingText(output, Constants.OUTPUT_AREA_HEIGHT - 1, Constants.FORMAT_ELLIPIZED);
         } else if (cmd.is("refactor") || cmd.is("rf")) {
 //            output = "[log]receiver refactor";
 //            final String test = "abc123中文";
@@ -221,9 +221,12 @@ public class Main {
             if (TextUtils.isEmpty(param)) {
                 inputTip = "miss param which package path";
             } else if (null != cmd.get(1)) {
-//                output = cmd.get(1);
+                String rootPath = cmd.get(1);
                 ICodeRefactor iCodeRefactor = (ICodeRefactor) SystemService.getInstance().getService(SystemService.LABEL_CODE_REFACTOR);
-                output = String.format("handle %d files", iCodeRefactor.getFileCount(cmd.get(1)));
+                iCodeRefactor.parsePath(rootPath);
+                iCodeRefactor.sortByLines(Constants.fDesc);
+                output = iCodeRefactor.getReport();
+                output = TextUtils.ellipsizingText(output, Constants.OUTPUT_AREA_HEIGHT - 1, Constants.FORMAT_ELLIPIZED);
                 // TODO
             }
         } else if (cmd.is("clear")) {

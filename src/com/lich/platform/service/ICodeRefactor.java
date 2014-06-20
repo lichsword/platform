@@ -12,6 +12,10 @@ public interface ICodeRefactor {
 
     public int getFileCount(String rootDir);
 
-    public String getReport(String rootDir);
+    public void parsePath(String path);
+
+    public String getReport();
+
+    public void sortByLines(int flag);
 
 }

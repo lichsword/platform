@@ -4,7 +4,10 @@ import com.jni.UNIX;
 import com.util.FileUtil;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,21 +20,6 @@ import java.util.HashMap;
 public class CodeRefactorService implements ICodeRefactor {
 
     private HashMap<String, CodeRefactorResult> cache = new HashMap<String, CodeRefactorResult>();
-
-    class CodeRefactorResult {
-
-        private int childFileCount;// 子文件数量
-        private int lines;// 文件行数
-        private String desc;// 描述
-
-        int getChildFileCount() {
-            return childFileCount;
-        }
-
-        void setChildFileCount(int childFileCount) {
-            this.childFileCount = childFileCount;
-        }
-    }
 
     public static void main(String[] args) {
         System.loadLibrary("unix");
@@ -59,23 +47,51 @@ public class CodeRefactorService implements ICodeRefactor {
     }
 
     @Override
-    public String getReport(String rootDir) {
-        if (!cache.containsKey(rootDir)) {
-            parsePath(rootDir);
-        }// end if
-
-        CodeRefactorResult result = cache.get(rootDir);
-
-        return null;  // TODO
+    public String getReport() {
+        return result;
     }
 
-    private void parsePath(String path) {
-        File file = new File(path);
-        if (file.isDirectory()) {
-            parseDir(file, cache);
-        } else {
-            parseFile(file, cache);
+    private String result = "";
+
+    @Override
+    public void sortByLines(int flag) {
+        List<CodeRefactorResult> list = new ArrayList<CodeRefactorResult>();
+        list.addAll(cache.values());
+        Collections.sort(list, new CodeRefactorComparator(flag));
+
+        StringBuilder sb = new StringBuilder();
+        for (CodeRefactorResult result : list) {
+            switch (result.getFileType()) {
+                case CodeRefactorResult.FILE_TYPE_DIR:
+                    sb.append("Dir");
+                    sb.append(" ");
+                    sb.append(result.getPath());
+                    sb.append("\n");
+                    break;
+                case CodeRefactorResult.FILE_TYPE_FILE_JAVA:
+                    sb.append(result.getLines());
+                    sb.append(" ");
+                    sb.append(result.getPath());
+                    sb.append("\n");
+                    break;
+                case CodeRefactorResult.FILE_TYPE_FILE_OTHER:
+                    break;
+                default:
+                    break;
+            }
         }
+        result = sb.toString();
+    }
+
+    public void parsePath(String path) {
+        if (!cache.containsKey(path)) {
+            File file = new File(path);
+            if (file.isDirectory()) {
+                parseDir(file, cache);
+            } else {
+                parseFile(file, cache);
+            }
+        }// end if
     }
 
     /**
@@ -92,6 +108,8 @@ public class CodeRefactorService implements ICodeRefactor {
             // 开始解析
             File[] childFiles = dir.listFiles();
             CodeRefactorResult result = new CodeRefactorResult();
+            result.setFileType(CodeRefactorResult.FILE_TYPE_DIR);
+            result.setPath(key);
             result.setChildFileCount(childFiles.length);
             cache.put(key, result);
             // 继续解析子文件
@@ -113,6 +131,8 @@ public class CodeRefactorService implements ICodeRefactor {
         } else {
             // do nothing
             CodeRefactorResult result = new CodeRefactorResult();
+            result.setFileType(CodeRefactorResult.FILE_TYPE_FILE_OTHER);
+            result.setPath(key);
             result.setChildFileCount(1);
 
             cache.put(key, result);
@@ -128,7 +148,11 @@ public class CodeRefactorService implements ICodeRefactor {
         UNIX.wc("-l", javaFilePath);
         String content = FileUtil.readFile("wc.log").trim();
         String[] parts = content.split(" ");
-        result.setChildFileCount(Integer.valueOf(parts[0]));
+        // 填写参数
+        result.setFileType(CodeRefactorResult.FILE_TYPE_FILE_JAVA);
+        result.setPath(javaFilePath);
+        result.setLines(Integer.valueOf(parts[0]));
+        result.setChildFileCount(1);
         // 保存
         cache.put(javaFilePath, result);
     }

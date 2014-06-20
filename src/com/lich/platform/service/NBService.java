@@ -8,7 +8,7 @@ package com.lich.platform.service;
  * <p/>
  * TODO
  */
-public class NBService {
+public class NBService implements INextBrain {
 
     public NBService() {
         super();
