@@ -1,5 +1,6 @@
 package com.lich.platform;
 
+import com.config.Config;
 import com.jni.TTY;
 import com.lich.platform.service.*;
 import com.util.TextUtils;
@@ -20,6 +21,7 @@ public class Main {
 
     private final String LIB_NAME_TTY = "tty";
     private final String LIB_NAME_GIT = "git";
+    private final String LIB_NAME_UNIX = "unix";
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -29,6 +31,7 @@ public class Main {
     public Main() {
         loadLibrary(LIB_NAME_TTY);
         loadLibrary(LIB_NAME_GIT);
+        loadLibrary(LIB_NAME_UNIX);
         init();
     }
 
@@ -43,13 +46,20 @@ public class Main {
      */
     private boolean loadLibrary(String path) {
         try {
-            System.out.println("Main.loadLibrary.Value = " + path);
+            log("Main.loadLibrary.Value = " + path);
             System.loadLibrary(path);
-            System.out.println("Main.loadLibrary.Success");
+            log("Main.loadLibrary.Success");
             return true;
         } catch (Exception e) {
-            System.out.println("Main.loadLibrary.Exception, reason\n " + e.toString());
+            log("Main.loadLibrary.Exception, reason\n " + e.toString());
             return false;
+        }
+    }
+
+
+    private void log(String msg) {
+        if (Config.fDebug) {
+            System.out.println(msg);
         }
     }
 
@@ -185,6 +195,7 @@ public class Main {
     }
 
     private void handleMsg(String msg) {
+        Cmd cmd = new Cmd(msg);
         if (msg.equals("time")) {
             ITime iTime = (ITime) SystemService.getInstance().getService(SystemService.LABEL_TIME);
             output = iTime.getTime();
@@ -193,7 +204,7 @@ public class Main {
             inputTip = "Select database by number.";
             output = iDatabase.handleMsg(msg);
         } else if (msg.equals("nb")) {
-            NBService nbService = (NBService) SystemService.getInstance().getService(SystemService.LABEL_NEXTBRAIN);
+            NBService nbService = (NBService) SystemService.getInstance().getService(SystemService.LABEL_NEXT_BRAIN);
 //            nbService. TODO
         } else if (msg.equals("log")) {
             String path = "/Users/lichsword/Documents/workspace_company/taoappcenter_android";
@@ -202,14 +213,75 @@ public class Main {
             IGit iGit = (IGit) SystemService.getInstance().getService(SystemService.LABEL_GIT);
             output = iGit.log(path, author, since);
             output = TextUtils.ellipsizingText(output, Constants.OUTPUT_AREA_HEIGHT - 1, "(%d more...)");
+        } else if (cmd.is("refactor") || cmd.is("rf")) {
+//            output = "[log]receiver refactor";
+//            final String test = "abc123中文";
+//            output = String.format("小s的结果:%s,大S的结果:%S", test, test);
+            String param = cmd.get(1);
+            if (TextUtils.isEmpty(param)) {
+                inputTip = "miss param which package path";
+            } else if (null != cmd.get(1)) {
+//                output = cmd.get(1);
+                ICodeRefactor iCodeRefactor = (ICodeRefactor) SystemService.getInstance().getService(SystemService.LABEL_CODE_REFACTOR);
+                output = String.format("handle %d files", iCodeRefactor.getFileCount(cmd.get(1)));
+                // TODO
+            }
+        } else if (cmd.is("clear")) {
+            output = "";
+            inputTip = "";
+        } else if (cmd.is("hack")) {
+            // TODO 调用反编译脚本
         }
-        // TODO
     }
 
+    class Cmd {
+
+        /**
+         * 词素块
+         */
+        String[] chunk;
+
+        public Cmd(String msg) {
+            chunk = parseMsg(msg);
+        }
+
+        /**
+         * @param msg
+         * @return 返回分词后的有序指令集
+         */
+        private String[] parseMsg(String msg) {
+            return msg.split(" ");
+        }
+
+        /**
+         * @param index
+         * @return "" if not match or error(Safety: ensure no-empty).
+         */
+        private String get(int index) {
+            final String EMPTY = "";
+            if (null == chunk) {
+                return EMPTY;
+            }
+
+            if (index < 0 || index >= chunk.length) {
+                return EMPTY;
+            }
+
+            return chunk[index];
+        }
+
+        public boolean is(String name) {
+            String cmdName = get(0);
+            return cmdName.equals(name);
+        }
+
+
+    }
 
     /**
      * 绘图
      */
+
     private void draw() {
         TTY.clear();
         drawStatebar();

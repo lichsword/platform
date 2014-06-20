@@ -12,12 +12,13 @@ import java.util.HashMap;
  */
 public class SystemService {
 
-    public static final String LABEL_NEXTBRAIN = "com.service.nextbrain";
+    public static final String LABEL_NEXT_BRAIN = "com.service.next_brain";
     public static final String LABEL_DATABASE = "com.service.database";
     public static final String LABEL_TIME = "com.service.time";
     public static final String LABEL_WEATHER = "com.service.weather";
     public static final String LABEL_WORK_REPORT = "com.service.work_report";
     public static final String LABEL_GIT = "com.service.git";
+    public static final String LABEL_CODE_REFACTOR = "com.service.code_refactor";
 
     private HashMap<String, Object> serviceHashMap = new HashMap<String, Object>();
     private HashMap<String, String> serviceNameHashMap = new HashMap<String, String>();
@@ -39,9 +40,10 @@ public class SystemService {
         serviceNameHashMap.put(LABEL_WORK_REPORT, WorkReportService.class.getName());
         serviceNameHashMap.put(LABEL_WEATHER, WeatherService.class.getName());
         serviceNameHashMap.put(LABEL_TIME, TimeService.class.getName());
-        serviceNameHashMap.put(LABEL_NEXTBRAIN, NBService.class.getName());
+        serviceNameHashMap.put(LABEL_NEXT_BRAIN, NBService.class.getName());
         serviceNameHashMap.put(LABEL_DATABASE, DBService.class.getName());
         serviceNameHashMap.put(LABEL_GIT, GitService.class.getName());
+        serviceNameHashMap.put(LABEL_CODE_REFACTOR, CodeRefactorService.class.getName());
     }
 
     public Object getService(String label) {
