@@ -224,7 +224,8 @@ public class Main {
                 String rootPath = cmd.get(1);
                 ICodeRefactor iCodeRefactor = (ICodeRefactor) SystemService.getInstance().getService(SystemService.LABEL_CODE_REFACTOR);
                 iCodeRefactor.parsePath(rootPath);
-                iCodeRefactor.sortByLines(Constants.fDesc);
+//                iCodeRefactor.sortByLines(Constants.fDesc);
+                iCodeRefactor.sortByImportNum(Constants.fDesc);
                 output = iCodeRefactor.getReport();
                 output = TextUtils.ellipsizingText(output, Constants.OUTPUT_AREA_HEIGHT - 1, Constants.FORMAT_ELLIPIZED);
                 // TODO

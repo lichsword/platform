@@ -13,6 +13,7 @@ public class CodeRefactorResult implements Comparable<CodeRefactorResult> {
     private int fileType;
     private int childFileCount;// 子文件数量
     private int lines;// 文件行数
+    private int importCount;// 引用其它类数
     private String path;// 路径
 
     public static final int FILE_TYPE_DIR = 0;
@@ -57,5 +58,13 @@ public class CodeRefactorResult implements Comparable<CodeRefactorResult> {
     @Override
     public int compareTo(CodeRefactorResult another) {
         return this.childFileCount - another.childFileCount;
+    }
+
+    public int getImportCount() {
+        return importCount;
+    }
+
+    public void setImportCount(int importCount) {
+        this.importCount = importCount;
     }
 }

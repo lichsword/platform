@@ -18,4 +18,6 @@ public interface ICodeRefactor {
 
     public void sortByLines(int flag);
 
+    public void sortByImportNum(int flag);
+
 }

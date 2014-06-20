@@ -22,10 +22,15 @@ public class CodeRefactorComparator implements Comparator<CodeRefactorResult> {
 
     @Override
     public int compare(CodeRefactorResult object, CodeRefactorResult another) {
+//        if (flag == Constants.fInc) {
+//            return object.getLines() - another.getLines();
+//        } else {
+//            return another.getLines() - object.getLines();
+//        }
         if (flag == Constants.fInc) {
-            return object.getLines() - another.getLines();
+            return object.getImportCount() - another.getImportCount();
         } else {
-            return another.getLines() - object.getLines();
+            return another.getImportCount() - object.getImportCount();
         }
     }
 

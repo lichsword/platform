@@ -7,18 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/log/TimeInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/util/TimeUtils.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/util/FileUtil.java" afterPath="$PROJECT_DIR$/src/com/util/FileUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libunix.jnilib" afterPath="$PROJECT_DIR$/libunix.jnilib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorComparator.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorComparator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorResult.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorResult.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorService.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/Constants.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/GitService.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/GitService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/ICodeRefactor.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/ICodeRefactor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/Main.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jni/UNIX.java" afterPath="$PROJECT_DIR$/src/com/jni/UNIX.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="platform.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403227876152" ignored="false" />
-    <file path="/Main.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403248093805" ignored="false" />
+    <file path="/Main.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403260871263" ignored="false" />
     <file path="$PROJECT_DIR$/.idea/misc.xml" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402234924551" ignored="false" />
     <file path="/fragment.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402235839345" ignored="false" />
     <file path="/PipeTest.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402240309580" ignored="false" />
@@ -29,7 +30,7 @@
     <file path="/TTY.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402899784197" ignored="false" />
     <file path="/TTYTest.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402623566667" ignored="false" />
     <file path="/ProducerCustomerModuleTest.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402623683830" ignored="false" />
-    <file path="/Constants.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403251763956" ignored="false" />
+    <file path="/Constants.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403261076410" ignored="false" />
     <file path="/TimeService.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402905464888" ignored="false" />
     <file path="/SystemService.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403171084376" ignored="false" />
     <file path="/A.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402893773494" ignored="false" />
@@ -50,13 +51,13 @@
     <file path="/FileUtil.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402991108957" ignored="false" />
     <file path="/TextUtils.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403001361098" ignored="false" />
     <file path="/Config.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403160851691" ignored="false" />
-    <file path="/ICodeRefactor.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403247579091" ignored="false" />
-    <file path="/CodeRefactorService.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403252995560" ignored="false" />
-    <file path="/UNIX.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403170304358" ignored="false" />
+    <file path="/ICodeRefactor.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403260758095" ignored="false" />
+    <file path="/CodeRefactorService.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403260957901" ignored="false" />
+    <file path="/UNIX.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403260495584" ignored="false" />
     <file path="/INextBrain.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403233170326" ignored="false" />
     <file path="/CodeRefactorResultComparator.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403236072403" ignored="false" />
-    <file path="/CodeRefactorComparator.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403248223820" ignored="false" />
-    <file path="/CodeRefactorResult.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403246229348" ignored="false" />
+    <file path="/CodeRefactorComparator.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403261108756" ignored="false" />
+    <file path="/CodeRefactorResult.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403260703887" ignored="false" />
     <file path="/TimeUtils.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403253265650" ignored="false" />
     <file path="/TimeInfo.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403250167707" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -171,7 +172,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorService.java" line="181" class="com.lich.platform.service.CodeRefactorService" package="com.lich.platform.service">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorService.java" line="230" class="com.lich.platform.service.CodeRefactorService" package="com.lich.platform.service">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -186,7 +187,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorService.java" line="30" class="com.lich.platform.service.CodeRefactorService" package="com.lich.platform.service">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorService.java" line="31" class="com.lich.platform.service.CodeRefactorService" package="com.lich.platform.service">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -214,7 +215,7 @@
       <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/lich/platform/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="225" column="39" selection-start="7486" selection-end="7495" vertical-scroll-proportion="0.0">
+            <state line="227" column="38" selection-start="7607" selection-end="7607" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -223,16 +224,7 @@
       <file leaf-file-name="ICodeRefactor.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/ICodeRefactor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="16" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleDateFormat.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../android_sdk_kernel_4.2/sources/android-16/java/text/SimpleDateFormat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="596" column="22" selection-start="24804" selection-end="24810" vertical-scroll-proportion="0.0">
+            <state line="16" column="27" selection-start="282" selection-end="291" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -241,13 +233,43 @@
       <file leaf-file-name="CodeRefactorService.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="22" selection-start="1622" selection-end="1622" vertical-scroll-proportion="0.63583815">
+            <state line="243" column="43" selection-start="7874" selection-end="7874" vertical-scroll-proportion="0.5231214">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#429#457#0" expanded="true" />
-                <element signature="e#606#634#0" expanded="true" />
-                <element signature="e#2004#2024#0" expanded="true" />
+                <element signature="e#456#484#0" expanded="true" />
+                <element signature="e#633#661#0" expanded="true" />
+                <element signature="e#2336#2356#0" expanded="true" />
+                <element signature="e#3576#3596#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CodeRefactorComparator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorComparator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="11" selection-start="343" selection-end="343" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CodeRefactorResult.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorResult.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="16" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wc.log" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wc.log">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -255,25 +277,16 @@
       <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/lich/platform/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="50" selection-start="1788" selection-end="1807" vertical-scroll-proportion="0.0">
+            <state line="51" column="28" selection-start="1867" selection-end="1867" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimeUtils.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/util/TimeUtils.java">
+      <file leaf-file-name="UNIX.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/jni/UNIX.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="46" selection-start="914" selection-end="927" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimeInfo.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/log/TimeInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="33" selection-start="388" selection-end="394" vertical-scroll-proportion="0.0">
+            <state line="32" column="32" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -300,19 +313,19 @@
         <option value="$PROJECT_DIR$/src/com/util/TextUtils.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/Config.java" />
         <option value="$PROJECT_DIR$/src/com/config/Config.java" />
-        <option value="$PROJECT_DIR$/src/com/jni/UNIX.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/SystemService.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/INextBrain.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/NBService.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorResultComparator.java" />
+        <option value="$PROJECT_DIR$/src/com/log/TimeInfo.java" />
+        <option value="$PROJECT_DIR$/src/com/util/TimeUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/jni/UNIX.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorResult.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/ICodeRefactor.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorComparator.java" />
-        <option value="$PROJECT_DIR$/src/com/log/TimeInfo.java" />
-        <option value="$PROJECT_DIR$/src/com/lich/platform/Constants.java" />
-        <option value="$PROJECT_DIR$/src/com/util/TimeUtils.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorService.java" />
+        <option value="$PROJECT_DIR$/src/com/lich/platform/Constants.java" />
+        <option value="$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorComparator.java" />
       </list>
     </option>
   </component>
@@ -418,32 +431,6 @@
               <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="log" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -490,24 +477,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -855,60 +824,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/INextBrain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="16" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android_sdk_kernel_4.2/sources/android-16/java/util/Collection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="19" selection-start="2154" selection-end="2154" vertical-scroll-proportion="0.8682635">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android_sdk_kernel_4.2/sources/android-16/java/util/Collections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1888" column="27" selection-start="58867" selection-end="58867" vertical-scroll-proportion="1.4277457">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../android_sdk_kernel_4.2/sources/android-16/java/util/HashMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="717" column="28" selection-start="24942" selection-end="24942" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hs_err_pid1588.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="434" column="25" selection-start="32456" selection-end="32456" vertical-scroll-proportion="0.30635837">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="978" selection-end="978" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="36" selection-start="541" selection-end="541" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wc.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -927,13 +845,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/ICodeRefactor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="16" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/log/TimeInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="33" selection-start="388" selection-end="394" vertical-scroll-proportion="0.0">
@@ -948,28 +859,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/Constants.java">
+    <entry file="file://$PROJECT_DIR$/src/com/log/Log.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="50" selection-start="1788" selection-end="1807" vertical-scroll-proportion="0.0">
+        <state line="10" column="13" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wc.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/lich/platform/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="225" column="39" selection-start="7486" selection-end="7495" vertical-scroll-proportion="0.0">
+        <state line="227" column="38" selection-start="7607" selection-end="7607" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/ICodeRefactor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="27" selection-start="282" selection-end="291" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="28" selection-start="1867" selection-end="1867" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jni/UNIX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="32" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="11" selection-start="343" selection-end="343" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="16" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/CodeRefactorService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="22" selection-start="1622" selection-end="1622" vertical-scroll-proportion="0.63583815">
+        <state line="243" column="43" selection-start="7874" selection-end="7874" vertical-scroll-proportion="0.5231214">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#429#457#0" expanded="true" />
-            <element signature="e#606#634#0" expanded="true" />
-            <element signature="e#2004#2024#0" expanded="true" />
+            <element signature="e#456#484#0" expanded="true" />
+            <element signature="e#633#661#0" expanded="true" />
+            <element signature="e#2336#2356#0" expanded="true" />
+            <element signature="e#3576#3596#0" expanded="true" />
           </folding>
         </state>
       </provider>
