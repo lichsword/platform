@@ -16,3 +16,4 @@ out/
 
 # my custom
 *.log
+.idea/

@@ -1,5 +1,6 @@
 package com.lich.platform;
 
+import com.assist.IHelper;
 import com.config.Config;
 import com.jni.TTY;
 import com.lich.platform.service.*;
@@ -235,6 +236,9 @@ public class Main {
             inputTip = "";
         } else if (cmd.is("hack")) {
             // TODO 调用反编译脚本
+        } else {
+            IHelper iHelper = (IHelper) SystemService.getInstance().getService(SystemService.LABEL_ASSIST_HELPER);
+            iHelper.record(cmd.get(0));
         }
     }
 
@@ -328,18 +332,17 @@ public class Main {
     }
 
     private void drawInputbar() {
-        TTY.attrset(3 | TTY.MASK_A_UNDERLINE);
-        TTY.move(Constants.OUTPUT_AREA_LINE_END, 0);
-        drawLineBg('-');
+        TTY.attrset(3 | TTY.MASK_A_UNDERLINE | TTY.MASK_A_BOLD);
         TTY.move(Constants.INPUT_AREA_LINE_BEGIN, 0);
-        TTY.attroff(3);
-
+        drawLineBg(' ');
+        TTY.move(Constants.INPUT_AREA_LINE_BEGIN, 0);
         // draw tips
         if (inputTip.equals("")) {
             TTY.addstr(Constants.STR_INPUT);
         } else {
             TTY.addstr(String.format(Constants.FORMAT_INPUT_AREA, inputTip));
         }
+        TTY.attroff(4);
 
         // move next line
         TTY.move(Constants.INPUT_AREA_LINE_BEGIN + 1, 0);

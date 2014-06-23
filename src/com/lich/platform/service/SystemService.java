@@ -1,5 +1,7 @@
 package com.lich.platform.service;
 
+import com.assist.Helper;
+
 import java.util.HashMap;
 
 /**
@@ -12,6 +14,7 @@ import java.util.HashMap;
  */
 public class SystemService {
 
+    public static final String LABEL_ASSIST_HELPER = "com.service.assist_helper";
     public static final String LABEL_NEXT_BRAIN = "com.service.next_brain";
     public static final String LABEL_DATABASE = "com.service.database";
     public static final String LABEL_TIME = "com.service.time";
@@ -44,6 +47,7 @@ public class SystemService {
         serviceNameHashMap.put(LABEL_DATABASE, DBService.class.getName());
         serviceNameHashMap.put(LABEL_GIT, GitService.class.getName());
         serviceNameHashMap.put(LABEL_CODE_REFACTOR, CodeRefactorService.class.getName());
+        serviceNameHashMap.put(LABEL_ASSIST_HELPER, Helper.class.getName());
     }
 
     public Object getService(String label) {
