@@ -8,7 +8,7 @@ package com.lich.platform.service;
  * <p/>
  * TODO
  */
-public class CodeRefactorResult implements Comparable<CodeRefactorResult> {
+public class CodeRefactorResult {
 
     private int fileType;
     private int childFileCount;// 子文件数量
@@ -55,10 +55,6 @@ public class CodeRefactorResult implements Comparable<CodeRefactorResult> {
         this.childFileCount = childFileCount;
     }
 
-    @Override
-    public int compareTo(CodeRefactorResult another) {
-        return this.childFileCount - another.childFileCount;
-    }
 
     public int getImportCount() {
         return importCount;

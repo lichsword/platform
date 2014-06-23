@@ -10,8 +10,6 @@ package com.lich.platform.service;
  */
 public interface ICodeRefactor {
 
-    public int getFileCount(String rootDir);
-
     public void parsePath(String path);
 
     public String getReport();

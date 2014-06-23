@@ -12,20 +12,20 @@ import java.util.Comparator;
  * <p/>
  * TODO
  */
-public class CodeRefactorComparator implements Comparator<CodeRefactorResult> {
+public class CodeRefactorComparatorImportCount implements Comparator<CodeRefactorResult> {
 
     private int flag = Constants.fInc;
 
-    public CodeRefactorComparator(int flag) {
+    public CodeRefactorComparatorImportCount(int flag) {
         this.flag = flag;
     }
 
     @Override
     public int compare(CodeRefactorResult object, CodeRefactorResult another) {
         if (flag == Constants.fInc) {
-            return object.getLines() - another.getLines();
+            return object.getImportCount() - another.getImportCount();
         } else {
-            return another.getLines() - object.getLines();
+            return another.getImportCount() - object.getImportCount();
         }
     }
 

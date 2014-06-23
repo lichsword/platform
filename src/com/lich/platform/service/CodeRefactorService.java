@@ -1,10 +1,9 @@
 package com.lich.platform.service;
 
-import com.jni.UNIX;
 import com.lich.platform.Constants;
 import com.log.TimeInfo;
-import com.util.FileUtils;
 import com.util.TextUtils;
+import com.util.UnixUtils;
 
 import java.io.File;
 import java.util.*;
@@ -25,25 +24,10 @@ public class CodeRefactorService implements ICodeRefactor {
         System.loadLibrary("unix");
         HashMap<String, CodeRefactorResult> cache = new HashMap<String, CodeRefactorResult>();
         CodeRefactorService service = new CodeRefactorService();
-    }
-
-    @Override
-    public int getFileCount(String rootDir) {
-        CodeRefactorResult result;
-
-        if (cache.containsKey(rootDir)) {
-
-        } else {
-            File file = new File(rootDir);
-            if (file.isDirectory()) {
-                parseDir(file, cache);
-            } else {
-                parseFile(file, cache);
-            }
-        }
-
-        result = cache.get(rootDir);
-        return result.getChildFileCount();
+//        service.parsePath("/Users/lichsword/Documents/workspace_github/platform/src/com/lich/platform/service");
+//        service.parsePath("/Users/lichsword/Documents/workspace_github/platform/src/com/log/Log.java");
+        service.parsePath("/Users/lichsword/Documents/workspace_github/platform/src/com/jni");
+        service.sortByImportNum(Constants.fDesc);
     }
 
     @Override
@@ -53,11 +37,17 @@ public class CodeRefactorService implements ICodeRefactor {
 
 
         sb.append(" in ");
-        sb.append(parsePathTimeInfo.getReport());
-        sb.append("(parse)");
-        sb.append(" & ");
-        sb.append(sortedByLineTimeInfo.getReport());
-        sb.append("(sort)");
+        if (null != parsePathTimeInfo) {
+            sb.append(parsePathTimeInfo.getReport());
+            sb.append("(parse)");
+        }// end if
+
+        if (null != sortedByLineTimeInfo) {
+            sb.append(" & ");
+            sb.append(sortedByLineTimeInfo.getReport());
+            sb.append("(sort)");
+        }// end if
+
         sb.append("\n");
         if (!TextUtils.isEmpty(sortedByLineReport)) {
             sb.append(sortedByLineReport);
@@ -117,12 +107,13 @@ public class CodeRefactorService implements ICodeRefactor {
         sortedByLineReport = sb.toString();
     }
 
+    @Override
     public void sortByImportNum(int flag) {
         long start = System.currentTimeMillis();
 
         List<CodeRefactorResult> list = new ArrayList<CodeRefactorResult>();
         list.addAll(cache.values());
-        Collections.sort(list, new CodeRefactorComparator(flag));
+        Collections.sort(list, new CodeRefactorComparatorImportCount(flag));
 
         StringBuilder sb = new StringBuilder();
 
@@ -153,6 +144,15 @@ public class CodeRefactorService implements ICodeRefactor {
     }
 
     public void parsePath(String path) {
+        cache.clear();
+        sortedByImportReport = "";
+        sortedByImportTimeInfo = null;
+        sortedByLineReport = "";
+        sortedByLineTimeInfo = null;
+        result = "";
+        parsePathReport = "";
+        parsePathTimeInfo = null;
+
         long start = System.currentTimeMillis();
         if (!cache.containsKey(path)) {
             File file = new File(path);
@@ -163,11 +163,11 @@ public class CodeRefactorService implements ICodeRefactor {
             }
         }// end if
 
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            e.printStackTrace(); // TODO
-        }
+//        try {
+//            Thread.sleep(1500);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace(); // TODO
+//        }
         long end = System.currentTimeMillis();
         parsePathTimeInfo = new TimeInfo(start, end);
         Collection<CodeRefactorResult> values = cache.values();
@@ -225,23 +225,14 @@ public class CodeRefactorService implements ICodeRefactor {
         String javaFilePath = javaFile.getAbsolutePath();
         result.setChildFileCount(1);
         // 解析行数
-        final String WC_LOG = "import.log";
-        UNIX.invoke("wc -l " + javaFilePath, WC_LOG);
-//        UNIX.wc("-l", javaFilePath);
-        String wclog = FileUtils.readFile(WC_LOG).trim();
-        String[] wcParts = wclog.split(" ");
-        int lines = Integer.valueOf(wcParts[0]);
+        int lines = UnixUtils.getFileLineCount(javaFilePath);
         // 解析import
-        final String IMPORT_LOG = "import.log";
-        UNIX.invoke("grep 'import '", IMPORT_LOG);
-        String greplog = FileUtils.readFile(IMPORT_LOG).trim();
-        String[] grepParts = greplog.split(" ");
-        int importcount = Integer.valueOf(grepParts[0]);
+        int imports = UnixUtils.getImportCount(javaFilePath);
         // ------------ 填写参数 ------------
         result.setFileType(CodeRefactorResult.FILE_TYPE_FILE_JAVA);
         result.setPath(javaFilePath);
         result.setLines(lines);
-        result.setImportCount(importcount);
+        result.setImportCount(imports);
         result.setChildFileCount(1);
         // 保存
         cache.put(javaFilePath, result);
