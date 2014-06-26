@@ -12,11 +12,13 @@ import java.util.ArrayList;
  */
 public class JavaFunc {
 
-    private ArrayList<JavaMem> mems = new ArrayList<JavaMem>();
+    private ArrayList<JavaVariable> mems = new ArrayList<JavaVariable>();
 
     private int flag;
 
+    private String returnValue;
     private String name;
+    private String param;
 
     private String data;
 
@@ -24,11 +26,11 @@ public class JavaFunc {
 
     private int lineSum;
 
-    public ArrayList<JavaMem> getMems() {
+    public ArrayList<JavaVariable> getMems() {
         return mems;
     }
 
-    public void setMems(ArrayList<JavaMem> mems) {
+    public void setMems(ArrayList<JavaVariable> mems) {
         this.mems = mems;
     }
 
@@ -70,5 +72,21 @@ public class JavaFunc {
 
     public void setLineSum(int lineSum) {
         this.lineSum = lineSum;
+    }
+
+    public String getReturnValue() {
+        return returnValue;
+    }
+
+    public void setReturnValue(String returnValue) {
+        this.returnValue = returnValue;
+    }
+
+    public String getParam() {
+        return param;
+    }
+
+    public void setParam(String param) {
+        this.param = param;
     }
 }

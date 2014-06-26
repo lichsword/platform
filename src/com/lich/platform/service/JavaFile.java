@@ -1,5 +1,7 @@
 package com.lich.platform.service;
 
+import java.util.ArrayList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: lichsword
@@ -11,8 +13,9 @@ package com.lich.platform.service;
 public class JavaFile {
 
     private String path;
-    private String packageDir;
     private JavaClass javaClass;
+    private JavaPackage javaPackage;
+    private ArrayList<JavaImport> imports = new ArrayList<JavaImport>();
 
     public JavaClass getJavaClass() {
         return javaClass;
@@ -40,11 +43,16 @@ public class JavaFile {
         return name;
     }
 
-    public String getPackageDir() {
-        return packageDir;
+    public JavaPackage getJavaPackage() {
+        return javaPackage;
     }
 
-    public void setPackageDir(String packageDir) {
-        this.packageDir = packageDir;
+    public void setJavaPackage(JavaPackage javaPackage) {
+        this.javaPackage = javaPackage;
+    }
+
+
+    public void addImport(JavaImport javaImport) {
+        imports.add(javaImport);
     }
 }

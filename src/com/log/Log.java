@@ -11,7 +11,7 @@ package com.log;
 public class Log {
 
     public static void e(String tag, String msg) {
-        System.out.println(tag + "|" + msg);
+        System.out.println(tag + " | " + msg);
     }
 
 }

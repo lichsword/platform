@@ -8,14 +8,15 @@ package com.lich.platform.service;
  * <p/>
  * TODO
  */
-public class JavaMem {
+public class JavaVariable {
 
-    public JavaMem() {
+    public JavaVariable() {
 
     }
 
     private int flag;
 
+    private String type;
     private String name;
 
     private String initValue;
@@ -53,5 +54,13 @@ public class JavaMem {
 
     public void setLinePos(int linePos) {
         this.linePos = linePos;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

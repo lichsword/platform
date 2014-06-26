@@ -23,7 +23,12 @@ public class TF_IDFService implements ITF_IDF {
     }
 
     public TF_IDFService() {
+    }
 
+    private void clearArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = 0;
+        }
     }
 
     public void run() {
@@ -34,7 +39,17 @@ public class TF_IDFService implements ITF_IDF {
 
     private void testcase(String left, String right) {
         double similarity = simulate(left, right);
-        Log.e(TAG, String.format("%s 与 %s 的相似度\n\t = %.2f", left, right, similarity));
+        double dPercent = similarity * 100;
+        int iPercent = (int) dPercent;
+        int valve = 50;
+        String desc;
+        if (iPercent > valve) {
+            desc = "相似";
+        } else {
+            desc = "不同";
+        }
+
+        Log.e(TAG, String.format("%s 与 %s 的相似度\n\t = %.2f (%d%%) 结论: %s", left, right, similarity, iPercent, desc));
     }
 
 
@@ -46,6 +61,7 @@ public class TF_IDFService implements ITF_IDF {
     }
 
     private void buildTF(String src, int[] tf) {
+        clearArray(tf);
         for (char ch : src.toCharArray()) {
             if (ch >= Constants.VISUAL_CHAR_INDEX_START &&
                     ch <= Constants.VISUAL_CHAR_INDEX_END) {
@@ -98,9 +114,9 @@ public class TF_IDFService implements ITF_IDF {
     }
 
 
-    private static final String test1 = "a}{|{)(sdahskjdaskdhjaskd";
-    private static final String test2 = "asdkjhq}{:<:hfivokreio";
-    private static final String test3 = "a}{|{)(sdahskjdaskdhjaskd";
+    private static final String test1 = "aaabbbccc";//"show me the money";
+    private static final String test2 = "bbbaaaccc";//"black sheep wall";
+    private static final String test3 = "aaabbbcccXYSDK";//"show me the moneyasd";
 
 
     private int[] tf1 = new int[Constants.VISUAL_CHAR_INDEX_END - Constants.VISUAL_CHAR_INDEX_START + 1];
