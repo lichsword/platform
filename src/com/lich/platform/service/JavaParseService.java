@@ -83,7 +83,7 @@ public class JavaParseService implements IJavaParse {
             }// end if
 
             // 打印日志，并加延时可见性
-            Log.e(TAG, "" + data[cursor]);
+            Log.e(TAG, "JavaParseService.doJava.While.char= " + data[cursor]);
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -103,6 +103,9 @@ public class JavaParseService implements IJavaParse {
     private JavaFunc mJavaFunc;
 
     private char[] data;
+    /**
+     * // TODO 这一块要让cursor 与 cursorLine 同步
+     */
     private int cursor;
     private int cursorLine;
 
@@ -126,6 +129,17 @@ public class JavaParseService implements IJavaParse {
                 break;
             case JavaConstants.STATE_LINE_START: {
                 String line = getLine(data, index);
+
+                {
+                    // 检测正确性
+                    String checkLine = getLineByLineIndex(data, cursorLine);
+                    if (!checkLine.equals(line)) {
+                        asset("line number mistake!!! \nleft = " + checkLine + "\nright = " + line);
+                    } else {
+                        Log.e(TAG, "line = " + line);
+                    }
+                }
+
                 String trimLine = line.trim();
                 if (trimLine.startsWith("//") || trimLine.startsWith("/*")) {
                     state = JavaConstants.STATE_COMMENTS_START;
@@ -142,17 +156,33 @@ public class JavaParseService implements IJavaParse {
                 break;
             }
             case JavaConstants.STATE_LINE_END:
-                switch (ch) {
-                    case '\n':
-                        cursor++;
-                        cursorLine++;
-                        break;
-                    case ' ':
-                        break;
-                    default:
-                        state = JavaConstants.STATE_ELEMENT_START;
-                        break;
+                while (getChar(data, cursor) == '\n') {
+                    cursor++;// skip '\n'
+                    cursorLine += 1;
                 }
+
+                // TODO 这里要想个法子 cursorLine  & cursor ++的意义何在
+                /**
+                 *
+                 while (getChar(data, cursor) == '\n') {
+                 cursor++;// skip '\n'
+                 cursorLine += 1;
+                 }
+                 抽象成为一个共用的方法吧。
+                 */
+
+                state = JavaConstants.STATE_LINE_START;
+//                switch (ch) {
+//                    case '\n':
+//                        cursor++;
+//                        cursorLine++;
+//                        break;
+//                    case ' ':
+//                        break;
+//                    default:
+//                        state = JavaConstants.STATE_ELEMENT_START;
+//                        break;
+//                }
                 break;
             case JavaConstants.STATE_COMMENTS_START:
                 mJavaComment = new JavaComment();
@@ -336,6 +366,11 @@ public class JavaParseService implements IJavaParse {
                 state = JavaConstants.STATE_LINE_START;
                 break;
             case JavaConstants.STATE_VARIABLE_START: {
+
+                if (cursorLine == 77) {
+                    Log.e(TAG, "");
+                }// end if
+
                 String line = getLine(data, index);
                 char[] variableChars = line.trim().toCharArray();
                 mJavaVariable = new JavaVariable();
@@ -354,6 +389,24 @@ public class JavaParseService implements IJavaParse {
                             String initValue = String.valueOf(variableChars, offset, variableChars.length - offset);
                             mJavaVariable.setInitValue(initValue);
                             offset += initValue.length();
+                        } else if (currentChar == '<') {
+                            char[] pair = {'<', '>'};
+                            String expand = pickData(variableChars, offset, pair);
+                            if (!TextUtils.isEmpty(mJavaVariable.getType())) {
+                                // 说明是泛型类型
+                                String totalType = mJavaVariable.getType() + expand;
+                                mJavaVariable.setType(totalType);
+                                offset += expand.length();
+                            } else {
+                                // 说明是'='之后的泛型定义，可以跳过
+                                break;
+                            }
+                            break;
+                        } else if (currentChar == ';') {
+                            // To the end.
+                            offset++;
+                        } else {
+                            // TODO <,>  hashmap
                         }
                         if (offset >= variableChars.length) {
                             break;
@@ -385,7 +438,7 @@ public class JavaParseService implements IJavaParse {
                         offset += word.length();
 
                     }// end if
-                }
+                }// end while
 
                 mJavaVariable.setFlag(flag);
                 mJavaVariable.setLinePos(cursorLine);
@@ -469,15 +522,36 @@ public class JavaParseService implements IJavaParse {
                 mJavaFunc.setFlag(flag);
 
                 cursor += line.length();
-                cursorLine++;
-
 
                 state = JavaConstants.STATE_FUNC_END;
                 break;
             }
             case JavaConstants.STATE_FUNC_END: {
-                // TODO
-                asset();
+                char[] pair = {'{', '}'};
+                // 因为要找 { } 对，所以回退 back range.
+                int BACK_RANGE = 2;
+                cursor -= BACK_RANGE;
+                String funcContent = pickData(data, cursor, pair);
+                mJavaFunc.setData(funcContent);
+
+                cursorLine += countChar('\n', data, cursor, funcContent.length());
+                cursor += (funcContent.length() + BACK_RANGE);
+
+                if (null != mJavaClass) {
+                    mJavaClass.addFunc(mJavaFunc);
+                }// end if
+
+                mJavaFunc = null;// reset
+
+                if (getChar(data, cursor) == '}') {
+                    cursor++;// skip function's '}'
+                }// end if
+
+                while (getChar(data, cursor) == '\n') {
+                    cursor++;// skip '\n'
+                    cursorLine += 1;
+                }
+                state = JavaConstants.STATE_LINE_START;
                 break;
             }
             case JavaConstants.STATE_ELEMENT_START:
@@ -609,6 +683,22 @@ public class JavaParseService implements IJavaParse {
         return String.valueOf(data, start, pos - start);
     }
 
+    private String getLineByLineIndex(final char[] data, int lineIndex) {
+        int now = 0;
+        int startCharIndex = 0;
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] == '\n') {
+                if (now == lineIndex) {
+                    startCharIndex = i + 1;// 下一个字符就是起始行
+                    break;
+                }// end if
+                now++;
+            }// end if
+        }
+
+        return getLine(data, startCharIndex);
+    }
+
     private char nextChar() {
         return data[cursor + 1];
     }
@@ -703,16 +793,32 @@ public class JavaParseService implements IJavaParse {
         char right = pair[1];
 
         LinkedList<String> pairContentList = new LinkedList<String>();
+        LinkedList<Character> operStack = new LinkedList<Character>();
 
         int s = start;
         int e = start;
+//        operStack.push(left);
         while (true) {
-           if(data[s]==left){
-               // 找到起始符
+            if (data[e] == left) {
+                // 找到起始符
+                operStack.push(left);
+            } else if (data[e] == right) {
+                operStack.pop();
+                if (operStack.isEmpty()) {
+                    // 找到匹配的终止符
+                    pairContentList.push(String.valueOf(data, s, e - s + 1));
+                    break;
+                } else {
+                    // 找到小块的匹配
+                }
+            }
+            e++;
+            if (e >= data.length) {
+                break;
+            }// end if
 
-           }
         }
-
+        return pairContentList.pop();
     }
 
     private void asset() {
