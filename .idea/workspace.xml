@@ -7,12 +7,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/log/Assert.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/JavaElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/JavaClass.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/JavaClass.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/JavaComment.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/JavaComment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/JavaConstants.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/JavaConstants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/JavaFunc.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/JavaFunc.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/JavaImport.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/JavaImport.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/JavaPackage.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/JavaPackage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lich/platform/service/JavaVariable.java" afterPath="$PROJECT_DIR$/src/com/lich/platform/service/JavaVariable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/util/TextUtils.java" afterPath="$PROJECT_DIR$/src/com/util/TextUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/findbugs-idea.xml" afterPath="$PROJECT_DIR$/.idea/findbugs-idea.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="platform.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404114347050" ignored="false" />
+    <file path="/Dummy.txt" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404700512468" ignored="false" />
     <file path="/Main.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403515368711" ignored="false" />
     <file path="$PROJECT_DIR$/.idea/misc.xml" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402234924551" ignored="false" />
     <file path="/fragment.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403332723406" ignored="false" />
@@ -43,7 +54,7 @@
     <file path="/IGit.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402990261975" ignored="false" />
     <file path="/GitService.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402991044599" ignored="false" />
     <file path="/FileUtil.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1402991108957" ignored="false" />
-    <file path="/TextUtils.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403001361098" ignored="false" />
+    <file path="/TextUtils.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404458090478" ignored="false" />
     <file path="/Config.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403160851691" ignored="false" />
     <file path="/ICodeRefactor.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403580030776" ignored="false" />
     <file path="/CodeRefactorService.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403509569157" ignored="false" />
@@ -62,16 +73,19 @@
     <file path="/TF_IDFService.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403666772987" ignored="false" />
     <file path="/ITF_IDF.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403580195229" ignored="false" />
     <file path="/IJavaParseService.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403591185755" ignored="false" />
-    <file path="/JavaParseService.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404130495327" ignored="false" />
-    <file path="/JavaConstants.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403763057277" ignored="false" />
+    <file path="/JavaParseService.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404460512480" ignored="false" />
+    <file path="/JavaConstants.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404457006582" ignored="false" />
     <file path="/JavaFile.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403753655528" ignored="false" />
-    <file path="/JavaClass.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403763955798" ignored="false" />
+    <file path="/JavaClass.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404459767370" ignored="false" />
     <file path="/JavaMems.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403595411673" ignored="false" />
-    <file path="/JavaFunc.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403782645189" ignored="false" />
-    <file path="/JavaComment.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403678606656" ignored="false" />
-    <file path="/JavaPackage.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403689633430" ignored="false" />
-    <file path="/JavaImport.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403753409907" ignored="false" />
-    <file path="/JavaVariable.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1403774691567" ignored="false" />
+    <file path="/JavaFunc.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404463109843" ignored="false" />
+    <file path="/JavaComment.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404201500046" ignored="false" />
+    <file path="/JavaPackage.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404199175069" ignored="false" />
+    <file path="/JavaImport.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404199083800" ignored="false" />
+    <file path="/JavaVariable.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404353288753" ignored="false" />
+    <file path="/Asset.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404196862153" ignored="false" />
+    <file path="/JavaElement.java" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404296358934" ignored="false" />
+    <file path="/a.dummy" changelist="c35ecc90-1ddb-4bf5-909c-d0f84313bb7e" time="1404296218974" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +143,82 @@
       </breakpoint>
     </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java" line="370" class="com.lich.platform.service.JavaParseService" package="com.lich.platform.service">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java" line="226" class="com.lich.platform.service.JavaParseService" package="com.lich.platform.service">
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java" line="472" class="com.lich.platform.service.JavaParseService" package="com.lich.platform.service">
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java" line="139" class="com.lich.platform.service.JavaParseService" package="com.lich.platform.service">
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaComment.java" line="41" class="com.lich.platform.service.JavaComment" package="com.lich.platform.service">
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaComment.java" line="59" class="com.lich.platform.service.JavaComment" package="com.lich.platform.service">
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaFunc.java" line="104" class="com.lich.platform.service.JavaFunc" package="com.lich.platform.service">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -144,52 +233,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java" line="235" class="com.lich.platform.service.JavaParseService" package="com.lich.platform.service">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java" line="134" class="com.lich.platform.service.JavaParseService" package="com.lich.platform.service">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java" line="686" class="com.lich.platform.service.JavaParseService" package="com.lich.platform.service">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java" line="691" class="com.lich.platform.service.JavaParseService" package="com.lich.platform.service">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaFunc.java" line="150" class="com.lich.platform.service.JavaFunc" package="com.lich.platform.service">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -214,16 +258,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JavaParseService.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java">
+      <file leaf-file-name="JavaClass.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="169" column="43" selection-start="5480" selection-end="5480" vertical-scroll-proportion="0.6112676">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#660#678#0" expanded="true" />
-                <element signature="e#28844#28852#0" expanded="true" />
-                <element signature="e#28912#28923#0" expanded="true" />
-              </folding>
+            <state line="46" column="31" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -231,7 +270,45 @@
       <file leaf-file-name="TextUtils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/util/TextUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="26" selection-start="926" selection-end="926" vertical-scroll-proportion="0.0">
+            <state line="160" column="16" selection-start="4365" selection-end="4365" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaElement.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaElement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="24" selection-start="303" selection-end="309" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaFunc.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaFunc.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="149" column="50" selection-start="5187" selection-end="5187" vertical-scroll-proportion="0.027422303">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaParseService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="336" column="24" selection-start="12893" selection-end="12893" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaComment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaComment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="45" selection-start="1535" selection-end="1535" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -240,61 +317,7 @@
       <file leaf-file-name="JavaConstants.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaConstants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="48" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaClass.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaClass.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="5" selection-start="1146" selection-end="1146" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaFunc.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaFunc.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="15" selection-start="820" selection-end="820" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaFile.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaFile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="31" selection-start="1156" selection-end="1156" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaImport.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaImport.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="170" selection-end="170" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaPackage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaPackage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="23" selection-start="194" selection-end="194" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaVariable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaVariable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="22" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0">
+            <state line="66" column="46" selection-start="1975" selection-end="1975" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -318,22 +341,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/lich/platform/service/ITF_IDF.java" />
-        <option value="$PROJECT_DIR$/src/com/lich/platform/service/IJavaParseService.java" />
-        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaMems.java" />
-        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaMem.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/Constants.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/TF_IDFService.java" />
-        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaComment.java" />
         <option value="$PROJECT_DIR$/src/com/log/Log.java" />
+        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaFile.java" />
+        <option value="$PROJECT_DIR$/src/com/log/Asset.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaPackage.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaImport.java" />
-        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaFile.java" />
-        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaClass.java" />
-        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaConstants.java" />
+        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaComment.java" />
+        <option value="$PROJECT_DIR$/src/com/log/Assert.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaVariable.java" />
-        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaFunc.java" />
+        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaConstants.java" />
+        <option value="$PROJECT_DIR$/src/com/util/TextUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaElement.java" />
+        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaClass.java" />
         <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java" />
+        <option value="$PROJECT_DIR$/src/com/lich/platform/service/JavaFunc.java" />
       </list>
     </option>
   </component>
@@ -373,8 +396,8 @@
     <option name="IS_UNIT_TEST_ENABLED" value="true" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="15" />
-    <option name="y" value="22" />
+    <option name="x" value="1398" />
+    <option name="y" value="-259" />
     <option name="width" value="1260" />
     <option name="height" value="731" />
   </component>
@@ -420,7 +443,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -440,132 +462,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="log" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -875,29 +774,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="15" y="22" width="1260" height="731" extended-state="0" />
+    <frame x="1398" y="-259" width="1260" height="731" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34369886" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.400982" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43862522" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31423897" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22899505" sideWeight="0.68576103" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22899505" sideWeight="0.5613748" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21004942" sideWeight="0.68576103" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31423897" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21004942" sideWeight="0.5613748" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31423897" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2520593" sideWeight="0.7446808" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34369886" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2520593" sideWeight="0.7152209" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -974,37 +873,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../android_sdk_kernel_4.2/sources/android-16/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1096" column="15" selection-start="41429" selection-end="41429" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="57" selection-start="284" selection-end="284" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/TF_IDFService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="47" selection-start="3360" selection-end="3360" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3246#3262#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaComment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="16" selection-start="491" selection-end="491" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../android_sdk_kernel_4.2/sources/android-16/java/util/zip/ZipFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -1017,76 +885,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/log/Log.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="27" selection-start="223" selection-end="223" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="169" column="43" selection-start="5480" selection-end="5480" vertical-scroll-proportion="0.6112676">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#660#678#0" expanded="true" />
-            <element signature="e#28844#28852#0" expanded="true" />
-            <element signature="e#28912#28923#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/util/TextUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="26" selection-start="926" selection-end="926" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="48" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="5" selection-start="1146" selection-end="1146" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaFunc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="15" selection-start="820" selection-end="820" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="13" column="27" selection-start="223" selection-end="223" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="31" selection-start="1156" selection-end="1156" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaImport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="170" selection-end="170" vertical-scroll-proportion="0.0">
+        <state line="55" column="31" selection-start="1156" selection-end="1156" vertical-scroll-proportion="0.6380697">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaPackage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="23" selection-start="194" selection-end="194" vertical-scroll-proportion="0.0">
+        <state line="21" column="22" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaImport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="1" selection-start="537" selection-end="682" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../android_sdk_kernel_4.2/sources/android-16/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1604" column="25" selection-start="59835" selection-end="59835" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaVariable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="22" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0">
+        <state line="10" column="43" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/log/Assert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="178" selection-end="178" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="31" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/util/TextUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="16" selection-start="4365" selection-end="4365" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="24" selection-start="303" selection-end="309" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaParseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="336" column="24" selection-start="12893" selection-end="12893" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaComment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="45" selection-start="1535" selection-end="1535" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="46" selection-start="1975" selection-end="1975" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lich/platform/service/JavaFunc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="149" column="50" selection-start="5187" selection-end="5187" vertical-scroll-proportion="0.027422303">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

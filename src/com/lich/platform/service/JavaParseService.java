@@ -32,7 +32,8 @@ public class JavaParseService implements IJavaParse {
     private HashMap<String, JavaFile> cache = new HashMap<String, JavaFile>();
 
     public void test() {
-        parsePath("/Users/lichsword/Documents/workspace_github/platform/src/com/lich/platform/service/JavaParseService.java");
+//        parsePath("/Users/lichsword/Documents/workspace_github/platform/src/com/lich/platform/service/JavaParseService.java");
+        parsePath("/Users/lichsword/Documents/workspace_github/platform/src/com/lich/platform/service/JavaClass.java");
     }
 
     private void parsePath(String path) {
@@ -84,11 +85,12 @@ public class JavaParseService implements IJavaParse {
 
             // 打印日志，并加延时可见性
             Log.e(TAG, "JavaParseService.doJava.While.char= " + data[cursor]);
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace(); // TODO
-            }
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace(); // TODO
+//            }
+
         }
     }
 
@@ -109,36 +111,31 @@ public class JavaParseService implements IJavaParse {
     private int cursor;
     private int cursorLine;
 
-    private static final int STATE_TAG_BRACKET_ROUND_BEGIN = 0;
-    private static final int STATE_TAG_BRACKET_ROUND_END = 0;
-    private static final int STATE_TAG_BRACKET_ANGLE_BEGIN = 0;
-    private static final int STATE_TAG_BRACKET_ANGLE_END = 0;
-    private static final int STATE_TAG_BRACKET_BIG_BEGIN = 0;
-    private static final int STATE_TAG_BRACKET_BIG_END = 0;
-
     private void doChar(final char ch, final char[] data, final int index) throws IllegalStateException {
-        Log.e(TAG, JavaConstants.getStateName(state) + " Line " + cursorLine);
+        Log.e(TAG, JavaConstants.getStateName(state) + " L=" + cursorLine + " C=" + cursor);
+//        Log.e(TAG, JavaConstants.getStateName(state) + " char = " + index);
         switch (state) {
             case JavaConstants.STATE_DOCUMENT_START:
                 mJavaFile = new JavaFile();
                 state = JavaConstants.STATE_LINE_START;
                 break;
-            case JavaConstants.STATE_DOCUMENT_END:
+            case JavaConstants.STATE_DOCUMENT_END: {
                 asset();
                 // TODO
                 break;
+            }
             case JavaConstants.STATE_LINE_START: {
                 String line = getLine(data, index);
 
-                {
-                    // 检测正确性
-                    String checkLine = getLineByLineIndex(data, cursorLine);
-                    if (!checkLine.equals(line)) {
-                        asset("line number mistake!!! \nleft = " + checkLine + "\nright = " + line);
-                    } else {
-                        Log.e(TAG, "line = " + line);
-                    }
-                }
+//                {
+//                    检测正确性
+//                    String checkLine = getLineByLineIndex(data, cursorLine);
+//                    if (!checkLine.equals(line)) {
+//                        say("line number mistake!!! \nleft = " + checkLine + "\nright = " + line);
+//                    } else {
+//                        Log.e(TAG, "line = " + line);
+//                    }
+//                }
 
                 String trimLine = line.trim();
                 if (trimLine.startsWith("//") || trimLine.startsWith("/*")) {
@@ -156,159 +153,33 @@ public class JavaParseService implements IJavaParse {
                 break;
             }
             case JavaConstants.STATE_LINE_END:
-                while (getChar(data, cursor) == '\n') {
-                    cursor++;// skip '\n'
-                    cursorLine += 1;
-                }
-
-                // TODO 这里要想个法子 cursorLine  & cursor ++的意义何在
-                /**
-                 *
-                 while (getChar(data, cursor) == '\n') {
-                 cursor++;// skip '\n'
-                 cursorLine += 1;
-                 }
-                 抽象成为一个共用的方法吧。
-                 */
-
+                skipEnter();
                 state = JavaConstants.STATE_LINE_START;
-//                switch (ch) {
-//                    case '\n':
-//                        cursor++;
-//                        cursorLine++;
-//                        break;
-//                    case ' ':
-//                        break;
-//                    default:
-//                        state = JavaConstants.STATE_ELEMENT_START;
-//                        break;
-//                }
                 break;
             case JavaConstants.STATE_COMMENTS_START:
-                mJavaComment = new JavaComment();
-                char nextChar = nextChar();
-                if (nextChar == '/') {
-                    // 单行注释
-                    mJavaComment.setLineStart(cursorLine);
-                    String commentText = getLine(data, index);
-                    mJavaComment.setLineCount(1);
-                    mJavaComment.setContent(commentText);
-                } else if (nextChar == '*') {
-                    // 多行注释
-                    mJavaComment.setLineStart(cursorLine);
-                    // 查找注释尾
-                    int end = index;
-                    boolean endOfComment = false;
-                    while (true) {
-                        if (data[end] == '*' && data[end + 1] == '/') {
-                            end += 2;
-                            endOfComment = true;
-                            break;
-                        } else {
-                            end += 2;
-                            if (end >= data.length) {
-                                endOfComment = false;
-                                break;
-                            }// end if
-                        }
-                    }
-
-                    if (endOfComment) {
-                        String commentText = String.valueOf(data, index, end - index);
-                        mJavaComment.setContent(commentText);
-                        int lineCount = countChar('\n', data, index, end - index) + 1;
-                        mJavaComment.setLineCount(lineCount);
-                        cursor += commentText.length();
-                        cursorLine += lineCount;
-                        state = JavaConstants.STATE_COMMENTS_END;
-                    } else {
-                        state = JavaConstants.STATE_IN_ERROR;
-                    }
-                }
+                mJavaComment = new JavaComment(data, cursor, cursorLine);
+                cursor += mJavaComment.getLength();
+                cursorLine += (mJavaComment.getLineCount() - 1);
+                mJavaComment = null;// reset TODO hold wait class new.
+                state = JavaConstants.STATE_COMMENTS_END;
                 break;
             case JavaConstants.STATE_COMMENTS_END: {
-                // TODO
-//                mJavaComment = null;// reset
-                while (getChar(data, cursor) == '\n') {
-                    cursor++;// skip '\n'
-                    cursorLine += 1;
-                }
+                // mJavaComment 的 reset 放到 JavaClass 之后
+                skipEnter();
                 state = JavaConstants.STATE_LINE_START;
                 break;
             }
             case JavaConstants.STATE_CLASS_START: {
-                // 解析类
-                String line = getLine(data, index);
-                char[] classChars = line.trim().toCharArray();
-                String word = null;
-                int offset = 0;
-                int flag = 0;
-                while (true) {
-                    word = getWord(classChars, offset);
-                    if (word.equals(JavaConstants.KW_PUBLIC)) {
-                        flag |= JavaConstants.VISIT_PUBLIC;
-                    } else if (word.equals(JavaConstants.KW_PROTECT)) {
-                        flag |= JavaConstants.VISIT_PROTECT;
-                    } else if (word.equals(JavaConstants.KW_PRIVATE)) {
-                        flag |= JavaConstants.VISIT_PRIVATE;
-                    } else if (word.equals(JavaConstants.KW_STATIC)) {
-                        flag |= JavaConstants.MODIFY_STATIC;
-                    } else if (word.equals(JavaConstants.KW_FINAL)) {
-                        flag |= JavaConstants.MODIFY_FINAL;
-                    } else if (word.equals(JavaConstants.KW_CLASS)) {
-                        mJavaClass = new JavaClass();
-                        // 检查类注释
-                        if (mJavaComment != null) {
-                            mJavaClass.setComment(mJavaComment);
-                            mJavaComment = null;// reset
-                        }// end if
-
-                        // 跳过空格
-                        while (' ' == getChar(classChars, offset)) {
-                            offset++;
-
-                            if (offset >= line.length()) {
-                                break;
-                            }// end if
-                        }
-
-                        // 取类名
-                        String name = getWord(classChars, offset);
-                        mJavaClass.setName(name);
-                        mJavaClass.setFlag(flag);
-                        offset += name.length();
-                        break;
-                    } else {
-                        asset("[" + word + "]");
-                    }
-                    offset += word.length();
-                    if (offset >= line.length()) {
-                        break;
-                    }// end if
-
-                    // 跳过空格字符
-                    while (' ' == getChar(classChars, offset)) {
-                        offset++;
-
-                        if (offset >= line.length()) {
-                            break;
-                        }// end if
-                    }
-
-                }
-
-                cursor += line.length();
-
-                while ('\n' == getChar(data, cursor)) {
-                    cursor++;// skip '\n'
-                    cursorLine++;
-                }
-                state = JavaConstants.STATE_LINE_START;
-//                asset(getLine(data, index));
+                mJavaClass = new JavaClass(data, cursor, cursorLine);
+                cursor += mJavaClass.getLength();
+                cursorLine += (mJavaClass.getLineCount() - 1);
+                mJavaClass = null;// reset
+                state = JavaConstants.STATE_CLASS_END;
                 break;
             }
             case JavaConstants.STATE_CLASS_END:
-                mJavaClass = null;// reset
+                skipEnter();
+                state = JavaConstants.STATE_LINE_START;
                 break;
             case JavaConstants.STATE_MEMBER_START: {
                 String line = getLine(data, index);
@@ -327,49 +198,34 @@ public class JavaParseService implements IJavaParse {
                 break;
             }
             case JavaConstants.STATE_PACKAGE_START: {
-                String line = getLine(data, index);
-                String trimLine = line.trim();
-                String[] piece = trimLine.split(" ");
-                mJavaPackage = new JavaPackage();
-                mJavaPackage.setPath(piece[1]);
+                mJavaPackage = new JavaPackage(data, cursor, cursorLine);
                 state = JavaConstants.STATE_PACKAGE_END;
-                cursor += line.length();
                 break;
             }
             case JavaConstants.STATE_PACKAGE_END:
                 mJavaFile.setJavaPackage(mJavaPackage);
+                cursor += mJavaPackage.getLength();
                 mJavaPackage = null;// reset
-                while (getChar(data, cursor) == '\n') {
-                    cursor++;// skip '\n'
-                    cursorLine += 1;
-                }
+                skipEnter();
                 state = JavaConstants.STATE_LINE_START;
                 break;
             case JavaConstants.STATE_IMPORT_START: {
-                String line = getLine(data, index);
-                String trimLine = line.trim();
-                String[] piece = trimLine.split(" ");
-                mJavaImport = new JavaImport();
-                mJavaImport.setPath(piece[1]);
+                mJavaImport = new JavaImport(data, cursor, cursorLine);
                 state = JavaConstants.STATE_IMPORT_END;
-                cursor += line.length();
-
                 break;
             }
             case JavaConstants.STATE_IMPORT_END:
                 mJavaFile.addImport(mJavaImport);
+                cursor += mJavaImport.getLength();
                 mJavaImport = null;// reset
-                while (getChar(data, cursor) == '\n') {
-                    cursor++;// skip '\n'
-                    cursorLine += 1;
-                }
+                skipEnter();
                 state = JavaConstants.STATE_LINE_START;
                 break;
             case JavaConstants.STATE_VARIABLE_START: {
 
-                if (cursorLine == 77) {
-                    Log.e(TAG, "");
-                }// end if
+//                if (cursorLine == 77) {
+//                    Log.e(TAG, "");
+//                }// end if
 
                 String line = getLine(data, index);
                 char[] variableChars = line.trim().toCharArray();
@@ -381,7 +237,7 @@ public class JavaParseService implements IJavaParse {
                     word = getWord(variableChars, offset);
                     if (TextUtils.isEmpty(word)) {
                         char currentChar = getChar(variableChars, offset);
-                        if (isSpace(currentChar) || isTab(currentChar)) {
+                        if (TextUtils.isSpace(currentChar) || TextUtils.isTab(currentChar)) {
                             offset++;
                         } else if (currentChar == '=') {
                             // 变量赋值表达式
@@ -432,7 +288,7 @@ public class JavaParseService implements IJavaParse {
                             } else {
                                 mJavaVariable.setName(element);
                             }
-//                            asset("不识别 word=" + word);
+//                            say("不识别 word=" + word);
                         }
 
                         offset += word.length();
@@ -441,7 +297,7 @@ public class JavaParseService implements IJavaParse {
                 }// end while
 
                 mJavaVariable.setFlag(flag);
-                mJavaVariable.setLinePos(cursorLine);
+//                mJavaVariable.setLinePos(cursorLine);
 
                 cursor += line.length();
 
@@ -452,91 +308,17 @@ public class JavaParseService implements IJavaParse {
                 mJavaClass.addMember(mJavaVariable);
                 mJavaVariable = null;// reset
 
-                while (getChar(data, cursor) == '\n') {
-                    cursor++;// skip '\n'
-                    cursorLine += 1;
-                }
+                skipEnter();
 
                 state = JavaConstants.STATE_LINE_START;
                 break;
             }
             case JavaConstants.STATE_FUNC_START: {
-                String line = getLine(data, index);
-                char[] variableChars = line.trim().toCharArray();
-                mJavaFunc = new JavaFunc();
-                String word;
-                int offset = 0;
-                int flag = 0;
-                while (true) {
-                    word = getWord(variableChars, offset);
-                    if (TextUtils.isEmpty(word)) {
-                        char currentChar = getChar(variableChars, offset);
-                        if (isSpace(currentChar) || isTab(currentChar)) {
-                            offset++;
-                        } else if (currentChar == '(') {
-                            if (TextUtils.isEmpty(mJavaFunc.getParam())) {
-                                int paramEnd = charAt(variableChars, offset, ')');
-                                String param = String.valueOf(variableChars, offset, paramEnd - offset);
-                                mJavaFunc.setParam(param);
-                                offset += param.length();
-                                break;
-                            } else {
-                                asset("" + currentChar);
-                            }
-                        } else {
-                            asset("" + currentChar);
-                        }
-
-                        if (offset >= variableChars.length) {
-                            break;
-                        } else {
-                            continue;
-                        }
-                    } else {
-                        word = getWord(variableChars, offset);
-                        if (word.equals(JavaConstants.KW_PUBLIC)) {
-                            flag |= JavaConstants.VISIT_PUBLIC;
-                        } else if (word.equals(JavaConstants.KW_PROTECT)) {
-                            flag |= JavaConstants.VISIT_PROTECT;
-                        } else if (word.equals(JavaConstants.KW_PRIVATE)) {
-                            flag |= JavaConstants.VISIT_PRIVATE;
-                        } else if (word.equals(JavaConstants.KW_STATIC)) {
-                            flag |= JavaConstants.MODIFY_STATIC;
-                        } else if (word.equals(JavaConstants.KW_FINAL)) {
-                            flag |= JavaConstants.MODIFY_FINAL;
-                        } else {
-                            String element = getVariableName(variableChars, offset);
-                            if (TextUtils.isEmpty(mJavaFunc.getReturnValue())) {
-                                mJavaFunc.setReturnValue(element);
-                            } else if (TextUtils.isEmpty(mJavaFunc.getName())) {
-                                mJavaFunc.setName(element);
-                            } else {
-                                asset(element);
-                            }
-                        }
-
-                        offset += word.length();
-                    }// end if
-                }
-
-                mJavaFunc.setFlag(flag);
-
-                cursor += line.length();
-
-                state = JavaConstants.STATE_FUNC_END;
+                mJavaFunc = new JavaFunc(data, cursor, cursorLine);
+                cursor += mJavaFunc.getLength();
                 break;
             }
             case JavaConstants.STATE_FUNC_END: {
-                char[] pair = {'{', '}'};
-                // 因为要找 { } 对，所以回退 back range.
-                int BACK_RANGE = 2;
-                cursor -= BACK_RANGE;
-                String funcContent = pickData(data, cursor, pair);
-                mJavaFunc.setData(funcContent);
-
-                cursorLine += countChar('\n', data, cursor, funcContent.length());
-                cursor += (funcContent.length() + BACK_RANGE);
-
                 if (null != mJavaClass) {
                     mJavaClass.addFunc(mJavaFunc);
                 }// end if
@@ -547,10 +329,7 @@ public class JavaParseService implements IJavaParse {
                     cursor++;// skip function's '}'
                 }// end if
 
-                while (getChar(data, cursor) == '\n') {
-                    cursor++;// skip '\n'
-                    cursorLine += 1;
-                }
+                skipEnter();
                 state = JavaConstants.STATE_LINE_START;
                 break;
             }
@@ -638,7 +417,7 @@ public class JavaParseService implements IJavaParse {
     private String getWord(final char[] data, final int start) {
         int end = start;
 
-        while (isAlphabet(data[end])) {
+        while (TextUtils.isAlphabet(data[end])) {
             end++;
         }
 
@@ -656,24 +435,31 @@ public class JavaParseService implements IJavaParse {
         int end = start;
 
         // 首字符
-        if (isAlphabet(data[end]) || '_' == data[end]) {
+        if (TextUtils.isAlphabet(data[end]) || '_' == data[end]) {
             end++;
         } else {
             return "";
         }
 
         // 后续字符
-        while (isAlphabet(data[end]) || isNumber(data[end]) || '_' == data[end]) {
+        while (TextUtils.isAlphabet(data[end]) || TextUtils.isNumber(data[end]) || '_' == data[end]) {
             end++;
         }
 
         return String.valueOf(data, start, end - start);
     }
 
+    /**
+     * 读取一行，从当前字符向后的一行内容
+     *
+     * @param data
+     * @param start
+     * @return
+     */
     private String getLine(final char[] data, final int start) {
         int pos = start;
 
-        while (!isEnter(data[pos])) {
+        while (!TextUtils.isEnter(data[pos])) {
             pos++;
             if (pos >= data.length) {
                 break;
@@ -686,6 +472,11 @@ public class JavaParseService implements IJavaParse {
     private String getLineByLineIndex(final char[] data, int lineIndex) {
         int now = 0;
         int startCharIndex = 0;
+
+        if (lineIndex == 0) {
+            startCharIndex = 0;
+            return getLine(data, startCharIndex);
+        }
         for (int i = 0; i < data.length; i++) {
             if (data[i] == '\n') {
                 if (now == lineIndex) {
@@ -706,7 +497,7 @@ public class JavaParseService implements IJavaParse {
     private void nextLine() {
         int pos = cursor;
         boolean isLast = false;
-        while (!isEnter(data[pos])) {
+        while (!TextUtils.isEnter(data[pos])) {
             pos++;
             if (pos >= data.length) {
                 isLast = true;
@@ -718,27 +509,6 @@ public class JavaParseService implements IJavaParse {
             cursor = pos;
         }
     }
-
-    private boolean isSpace(char ch) {
-        return ch == ' ';
-    }
-
-    private boolean isTab(char ch) {
-        return ch == '\t';
-    }
-
-    private boolean isAlphabet(char ch) {
-        return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
-    }
-
-    private boolean isNumber(char ch) {
-        return (ch >= '0' && ch <= '9');
-    }
-
-    private boolean isEnter(char ch) {
-        return ch == '\n';
-    }
-
 
     /**
      * 从 start 开始向后查找第1个匹配字符，成功返回字符索引，否则返回 -1.
@@ -822,11 +592,22 @@ public class JavaParseService implements IJavaParse {
     }
 
     private void asset() {
-        throw new IllegalStateException("custom asset");
+        throw new IllegalStateException("custom say");
     }
 
     private void asset(String info) {
-        throw new IllegalStateException("custom asset: 不识别" + info);
+        throw new IllegalStateException("custom say: 不识别" + info);
+    }
+
+    private void skipEnter() {
+        while (getChar(data, cursor) == '\n') {
+            cursor++;// skip '\n'
+            cursorLine++;
+
+            if (cursor >= data.length) {
+                break;
+            }// end if
+        }
     }
 
 }

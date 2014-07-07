@@ -8,15 +8,29 @@ package com.lich.platform.service;
  * <p/>
  * TODO
  */
-public class JavaImport {
+public class JavaImport extends JavaElement {
 
-    private String path;
+    public JavaImport(char[] data, int cursor, int cursorLine) {
+        int end;
+        int enterNum = 0;
+        for (end = cursor; end < data.length; end++) {
+            if (data[end] == '\n') {
+                enterNum++;
+            }// end if
 
-    public String getPath() {
-        return path;
-    }
+            if (data[end] == ';') {
+                break;
+            }// end if
+        }
 
-    public void setPath(String path) {
-        this.path = path;
+        super.start = cursor;
+        super.length = end - cursor + 1;
+        super.data = data;
+        super.lineStart = cursorLine + enterNum;
+
+//        String line = getLine(data, index);
+//        String trimLine = line.trim();
+//        String[] piece = trimLine.split(" ");
+//        mJavaImport.setPath(piece[1]);
     }
 }

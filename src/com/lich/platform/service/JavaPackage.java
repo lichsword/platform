@@ -8,15 +8,30 @@ package com.lich.platform.service;
  * <p/>
  * TODO
  */
-public class JavaPackage {
+public class JavaPackage extends JavaElement {
 
-    private String path;
+    public JavaPackage(char[] data, int cursor, int cursorLine) {
+        int end;
+        int enterNum = 0;
+        for (end = cursor; end < data.length; end++) {
+            if (data[end] == '\n') {
+                enterNum++;
+            }// end if
 
-    public String getPath() {
-        return path;
-    }
+            if (data[end] == ';') {
+                break;
+            }// end if
+        }
 
-    public void setPath(String path) {
-        this.path = path;
+        super.start = cursor;
+        super.length = end - cursor + 1;
+        super.data = data;
+        super.lineStart = cursorLine;
+        super.lineEnd = cursorLine + enterNum;
+
+//        String line = getLine(data, index);
+//        String trimLine = line.trim();
+//        String[] piece = trimLine.split(" ");
+//        mJavaPackage.setPath(piece[1]);
     }
 }

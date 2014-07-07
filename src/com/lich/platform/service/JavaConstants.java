@@ -49,28 +49,32 @@ public class JavaConstants {
     public static final int STATE_DOCUMENT_END = 3;
     public static final int STATE_CLASS_START = 4;
     public static final int STATE_CLASS_END = 5;
-    public static final int STATE_COMMENTS_START = 6;
-    public static final int STATE_COMMENTS_END = 7;
+    public static final int STATE_CLASS_HEAD_START = 6;
+    public static final int STATE_CLASS_HEAD_END = 7;
+    public static final int STATE_COMMENTS_START = 8;
+    public static final int STATE_COMMENTS_END = 9;
     /**
      * <p>member:</p>
      * <li>package</li>
      * <li>import</li>
      * <li>variable</li>
      */
-    public static final int STATE_MEMBER_START = 8;
-    public static final int STATE_MEMBER_END = 9;
-    public static final int STATE_FUNC_START = 10;
-    public static final int STATE_FUNC_END = 11;
-    public static final int STATE_PACKAGE_START = 12;
-    public static final int STATE_PACKAGE_END = 13;
-    public static final int STATE_IMPORT_START = 14;
-    public static final int STATE_IMPORT_END = 15;
-    public static final int STATE_VARIABLE_START = 16;
-    public static final int STATE_VARIABLE_END = 17;
-    public static final int STATE_LINE_START = 18;
-    public static final int STATE_LINE_END = 19;
-    public static final int STATE_ELEMENT_START = 20;
-    public static final int STATE_ELEMENT_END = 21;
+    public static final int STATE_MEMBER_START = 10;
+    public static final int STATE_MEMBER_END = 11;
+    public static final int STATE_FUNC_START = 12;
+    public static final int STATE_FUNC_END = 13;
+    public static final int STATE_FUNC_HEADER_START = 12;
+    public static final int STATE_FUNC_HEADER_END = 13;
+    public static final int STATE_PACKAGE_START = 14;
+    public static final int STATE_PACKAGE_END = 15;
+    public static final int STATE_IMPORT_START = 16;
+    public static final int STATE_IMPORT_END = 17;
+    public static final int STATE_VARIABLE_START = 18;
+    public static final int STATE_VARIABLE_END = 19;
+    public static final int STATE_LINE_START = 20;
+    public static final int STATE_LINE_END = 21;
+    public static final int STATE_ELEMENT_START = 22;
+    public static final int STATE_ELEMENT_END = 23;
 
 
     public static final int ERROR = -1;
@@ -83,6 +87,8 @@ public class JavaConstants {
         stateNameMap.put(STATE_DOCUMENT_END, "STATE_DOCUMENT_END");
         stateNameMap.put(STATE_CLASS_START, "STATE_CLASS_START");
         stateNameMap.put(STATE_CLASS_END, "STATE_CLASS_END");
+        stateNameMap.put(STATE_CLASS_HEAD_START, "STATE_CLASS_HEAD_START");
+        stateNameMap.put(STATE_CLASS_HEAD_END, "STATE_CLASS_HEAD_END");
         stateNameMap.put(STATE_COMMENTS_START, "STATE_COMMENTS_START");
         stateNameMap.put(STATE_COMMENTS_END, "STATE_COMMENTS_END");
         stateNameMap.put(STATE_MEMBER_START, "STATE_MEMBER_START");

@@ -8,7 +8,7 @@ package com.lich.platform.service;
  * <p/>
  * TODO
  */
-public class JavaVariable {
+public class JavaVariable extends JavaElement {
 
     public JavaVariable() {
 
