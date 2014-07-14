@@ -22,6 +22,7 @@ public class SystemService {
     public static final String LABEL_WORK_REPORT = "com.service.work_report";
     public static final String LABEL_GIT = "com.service.git";
     public static final String LABEL_CODE_REFACTOR = "com.service.code_refactor";
+    public static final String LABEL_ZIP = "com.service.zip";
 
     private HashMap<String, Object> serviceHashMap = new HashMap<String, Object>();
     private HashMap<String, String> serviceNameHashMap = new HashMap<String, String>();
@@ -48,6 +49,7 @@ public class SystemService {
         serviceNameHashMap.put(LABEL_GIT, GitService.class.getName());
         serviceNameHashMap.put(LABEL_CODE_REFACTOR, CodeRefactorService.class.getName());
         serviceNameHashMap.put(LABEL_ASSIST_HELPER, Helper.class.getName());
+        serviceNameHashMap.put(LABEL_ZIP, ZipService.class.getName());
     }
 
     public Object getService(String label) {
